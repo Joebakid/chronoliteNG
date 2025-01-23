@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function WatchGrid({ Btn, items }) {
-  const whatsappNumber = "2349013550698"; // Replace with your WhatsApp number (use international format without the '+' sign)
+  const whatsappNumber = "2349013550698"; // Replace with your WhatsApp number
 
   // Currency Formatter
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
-    currency: "NGN"
+    currency: "NGN",
   });
 
   // Format the price in the items data
   const formattedItems = items.map((item) => ({
     ...item,
-    price: formatter.format(item.price)
+    price: formatter.format(item.price),
   }));
 
   return (
     <div className="container-custom mt-40">
-      <div className="grid-custom">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {formattedItems.map((item) => (
           <div
             key={uuidv4()}
@@ -47,7 +47,7 @@ function ImageWithLoader({ src, alt }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative w-[100%] h-[300px]">
+    <div className="relative w-full h-72">
       {isLoading && (
         <div className="absolute inset-0 flex justify-center items-center">
           <div className="loader"></div>
