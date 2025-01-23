@@ -17,10 +17,10 @@ function NavBar() {
 
   return (
     <nav className="bg-slate-600 fixed left-0 right-0 top-0 z-10">
-      <div className="container-custom flex items-center justify-between p-2">
+      <div className="container-custom flex items-center justify-between p-4">
         {/* Logo */}
         <Link to="/">
-          <img className="w-[30px] rounded-xl" src={logo} alt="logo" />
+          <img className="w-[40px] rounded-xl" src={logo} alt="logo" />
         </Link>
 
         {/* Hamburger Icon for Mobile */}
@@ -66,14 +66,36 @@ function NavBar() {
 
         {/* Navigation Links */}
         <ul
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } lg:flex lg:items-center lg:space-x-6`}
+          className={`transition-transform transform ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          } lg:translate-x-0 lg:flex lg:items-center lg:space-x-6 fixed top-0 right-0 bottom-0 bg-slate-600 lg:bg-transparent w-full lg:w-auto lg:relative p-4 lg:p-0`}
         >
+          <div className="lg:hidden flex justify-end">
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none"
+              aria-label="Close menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
           {links.map((link, index) => (
-            <li key={index}>
+            <li key={index} className="mt-8 lg:mt-0 text-center lg:flex-grow ">
               <Link
-                className="block py-2 px-4 text-white hover:text-blue-300"
+                className="block py-2 px-4 text-white hover:text-blue-300 text-3xl justify-center items-center"
                 to={link.href}
                 onClick={() => setIsMenuOpen(false)} // Close menu on link click
               >
