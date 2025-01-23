@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Btn */
+
+.btn {
+  @apply text-red-100 bg-blue-400 p-2   mt-5 rounded-lg  hover:bg-sky-700 hover:ease-in transition ease-out duration-500  cursor-pointer items-center justify-center flex;
+}
+
+.link-nav {
+  @apply hover:ease-in transition ease-out duration-500;
+}
+
+.transition-custom {
+  @apply hover:ease-in transition ease-out duration-500;
+}
+
+/* Container */
+.container-custom {
+  @apply mx-auto overflow-x-hidden py-5 w-[70%];
+}
+
+/* Watch grid */
+
+.grid-custom {
+  @apply grid grid-cols-3 gap-4;
+}
+
+.card-custom {
+  @apply cursor-pointer hover:bg-slate-800;
+}
+
+.loader {
+  @apply border-4 border-solid border-gray-200 border-t-blue-500 rounded-full w-10 h-10;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+section {
+  @apply mt-40 flex items-center justify-center flex-col gap-10;
+}
