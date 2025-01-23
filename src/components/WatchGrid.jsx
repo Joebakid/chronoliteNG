@@ -27,12 +27,12 @@ function WatchGrid({ Btn, items }) {
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
             <p>{item.price}</p>
-            {/* WhatsApp button */}
+            {/* WhatsApp button with price */}
             <Btn
               text="Contact on WhatsApp"
               btnClassName="bg-green-500 text-white px-4 py-2 rounded"
               href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hello, I'm interested in the product "${item.name}". Here is the image link: ${item.img}`
+                `Hello, I'm interested in the product "${item.name}" priced at ${item.price}. Here is the image link: ${item.img}`
               )}`}
             />
           </div>
