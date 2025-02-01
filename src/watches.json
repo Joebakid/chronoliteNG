@@ -14,11 +14,7 @@
     "img": "https://img.kwcdn.com/product/fancy/79c7f053-c0ed-4cfa-b533-d75ced491c15.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "20284"
   },
-  {
-    "name": "Mingrui Fashionable Sports Digital Watch with Backlight, 30m Water Resistant, Multifunction Alarm Stopwatch, Round Dial, Rubber Strap, Battery Operated for Ages 3-14 - Assorted Colors",
-    "img": "https://img.kwcdn.com/product/fancy/b1ca7df9-f65e-4144-9bd5-948aa83eba18.jpg?imageView2/2/w/800/q/70/format/webp",
-    "price": "10000"
-  },
+
   {
     "name": "BINBOND Men's Fashion Round Dial Quartz Watch - Waterproof, Glow-in-the-Dark Calendar, Zinc Alloy Case, Stainless Steel Band, Perfect Gift for Him - Business Style, IP67 Rating, Pointer Display, No Wireless, Quartz Movement, Electronic Drive",
     "img": "https://img.kwcdn.com/product/fancy/f1f8e310-1654-49a8-ba10-0f424a22f426.jpg?imageView2/2/w/800/q/70/format/webp",
@@ -59,11 +55,7 @@
     "img": "https://img.kwcdn.com/product/fancy/93358ac5-be3a-4a21-b0b5-9e6eaa22d880.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "7000"
   },
-  {
-    "name": "1pc Bohemian Women'S Quartz Watch - Fashion Analog Display, Faux Leather Strap, Alloy Case - Ideal Valentine'S Day Gift (Patterned Band)",
-    "img": "https://img.kwcdn.com/product/1e19d4659cb/eeb80ec6-dee3-4c0f-992d-186f99170439_800x800.jpeg?imageView2/2/w/800/q/70/format/webp",
-    "price": "16000"
-  },
+
   {
     "name": "Chic Women's Quartz Watch - Vintage-Inspired, Luxury Fashion with Faux Leather Strap, Non, Round Case, Light, Creative Gifts, Birthday Gifts",
     "img": "https://img.kwcdn.com/product/fancy/4701d8cc-082c-4e24-87e3-6e0c27a05ea4.jpg?imageView2/2/w/800/q/70/format/webp",
@@ -72,6 +64,56 @@
   {
     "name": "Chic Women's Quartz Watch - Vintage-Inspired, Luxury Fashion with Faux Leather Strap, Non, Round Case, Light, Creative Gifts, Birthday Gifts",
     "img": "https://img.kwcdn.com/product/fancy/31272f30-8910-4831-9f51-4cc668d084ae.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "6200"
+  },
+  {
+    "name": "Men's Sporty Luminous Dual Display Watch with Silicone Strap - Zinc Alloy Case, Quartz Movement",
+    "img": "https://img.kwcdn.com/product/fancy/42cb4e9e-9afc-4a5a-aeb5-a2b6ba390e97.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "18000"
+  },
+  {
+    "name": "CRRJU Men'S Fashion Watch, Luxury High-End Temperament, Sporty Waterproof Quartz with Calendar, Glow Details, Round Zinc Alloy Case, Rubber Strap, Battery Powered, Water Resistance",
+    "img": "https://img.kwcdn.com/product/fancy/d99b7ff3-d0ac-4c15-a180-e23b58c74e2e.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "27000"
+  },
+  {
+    "name": "MAOYUAN Men's Stylish Business Quartz Watch - Durable Alloy Case, Premium Faux Leather Strap, Precise Timekeeping - Ideal Gift for Valentine's",
+    "img": "https://img.kwcdn.com/product/fancy/ef6cdd77-4522-4e09-948a-ed2f74d5f917.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "27000"
+  },
+  {
+    "name": "MAOYUAN Men's Stylish Business Quartz Watch  ",
+    "img": "https://img.kwcdn.com/product/fancy/3d972c13-aa6f-43b0-acde-0244d2e177a1.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "27000"
+  },
+  {
+    "name": "MAOYUAN Men's Stylish Business Quartz Watch - Durable Alloy Case, Premium Faux Leather Strap, Precise Timekeeping - Ideal Gift for Valentine's Day & More",
+    "img": "https://img.kwcdn.com/product/fancy/b74d5847-91ba-4ad6-9d92-3c2e9c063715.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "27000"
+  },
+  {
+    "name": "Cute Round Pointer Quartz Watch Luminous Analog Matte Color PU Wrist Watch For Women Daily Use",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/2051d38425b0f181c47cbad5868506eb.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "5200"
+  },
+  {
+    "name": "Cute Round Pointer Quartz Watch Luminous Analog Matte Color PU Wrist Watch For Women Daily Use",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/2ceef80f6c61bc147d402ee9e07532da.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "6600"
+  },
+  {
+    "name": "Cute Round Pointer Quartz Watch Luminous Analog Matte Color PU Wrist Watch For Women Daily Use",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/41813502bb388aedde65894f1a6a1a8d.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "6200"
+  },
+  {
+    "name": "Cute Round Pointer Quartz Watch Luminous Analog Matte Color PU Wrist Watch For Women Daily Use",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/702e01fd585bd852b5baad76d0254b5d.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "6600"
+  },
+  {
+    "name": "Cute Round Pointer Quartz Watch Luminous Analog Matte Color PU Wrist Watch For Women Daily Use",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/b80e7e8d57b542fc2c70f3277cb44c16.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "6200"
   }
 ]

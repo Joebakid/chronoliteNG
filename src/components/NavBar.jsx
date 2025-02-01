@@ -17,7 +17,7 @@ function NavBar() {
 
   return (
     <nav className="bg-slate-600 fixed left-0 right-0 top-0 z-10">
-      <div className="container-custom flex items-center justify-between p-4">
+      <div className="container-custom flex items-center justify-between p-1">
         {/* Logo */}
         <Link to="/">
           <img className="w-[40px] rounded-xl" src={logo} alt="logo" />
