@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../img/logo.webp";
+import logo from "../img/chronolite logo 1.png";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
