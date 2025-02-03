@@ -95,7 +95,7 @@ function NavBar() {
           {links.map((link, index) => (
             <li key={index} className="mt-8 lg:mt-0 text-center lg:flex-grow ">
               <Link
-                className="block py-2 px-4 text-white hover:text-blue-300 text-3xl justify-center items-center"
+                className="block py-2 px-4 text-white hover:text-blue-300 text-xl justify-center items-center"
                 to={link.href}
                 onClick={() => setIsMenuOpen(false)} // Close menu on link click
               >
