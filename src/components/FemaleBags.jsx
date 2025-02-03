@@ -1,13 +1,35 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import WatchGrid from "./WatchGrid";
 import bags from "../femalebags.json"; // Import bags JSON data
 
 function FemaleBags({ Btn }) {
   useEffect(() => {
     document.title = "Female Bags"; // Update the tab name
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
-  return <WatchGrid Btn={Btn} items={bags} />;
+  return (
+    <>
+      <Helmet>
+        <title>Female Bags - Chronolite NG</title>
+        <meta property="og:title" content="Female Bags - Chronolite NG" />
+        <meta
+          property="og:description"
+          content="Explore our exclusive collection of female bags at Chronolite NG."
+        />
+        <meta
+          property="og:image"
+          content="https://chronolite.com.ng/path-to-bag-image.jpg"
+        />
+        <meta
+          property="og:url"
+          content="https://chronolite.com.ng/femalebags"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+      <WatchGrid Btn={Btn} items={bags} />
+    </>
+  );
 }
 
 export default FemaleBags;
