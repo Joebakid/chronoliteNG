@@ -1,12 +1,12 @@
 [
   {
     "name": "shirt 1",
-    "img": "https://ik.imagekit.io/Cartel/plainTee/1.jpg?updatedAt=1738683688200",
-    "price": "10500"
+    "img": "https://ik.imagekit.io/Cartel/shirt/1.jpg?updatedAt=1738709004362",
+    "price": "15000"
   },
   {
     "name": "shirt 2",
-    "img": "https://ik.imagekit.io/Cartel/plainTee/2.jpg?updatedAt=1738683690912",
+    "img": "https://ik.imagekit.io/Cartel/plainTee/2.jpg?updatedAt=1738683https://ik.imagekit.io/Cartel/shirt/2.jpg?updatedAt=1738709005350",
     "price": "15284"
   }
 ]
