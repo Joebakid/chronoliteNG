@@ -30,7 +30,7 @@
 }
 
 .card-custom {
-  @apply cursor-pointer hover:bg-slate-800;
+  @apply cursor-pointer hover:scale-95  transition-transform duration-200;
 }
 
 .loader {
