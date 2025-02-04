@@ -47,7 +47,7 @@ function ImageWithLoader({ src, alt }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative w-full h-72">
+    <div className="relative w-full h-72 flex items-center justify-center">
       {isLoading && (
         <div className="absolute inset-0 flex justify-center items-center">
           <div className="loader"></div>

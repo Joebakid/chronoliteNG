@@ -4,6 +4,8 @@
 
 /* Btn */
 
+/* FONT */
+
 .btn {
   @apply text-red-100 bg-blue-400 p-2   mt-5 rounded-lg  hover:bg-sky-700 hover:ease-in transition ease-out duration-500  cursor-pointer items-center justify-center flex;
 }

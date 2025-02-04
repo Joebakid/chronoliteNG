@@ -8,6 +8,8 @@ function NavBar() {
   const links = [
     { text: "Watches", href: "/" },
     { text: "Female Bags", href: "/femalebags" },
+    { text: "Plain Tee  ", href: "/plaintee" }, // ✅ Added "Plain Tee"
+
     { text: "Review", href: "/review" },
   ];
 
@@ -20,7 +22,8 @@ function NavBar() {
       <div className="container-custom flex items-center justify-between p-1">
         {/* Logo */}
         <Link to="/">
-          <img className="w-[40px] rounded-xl" src={logo} alt="logo" />
+          {/* <img className="w-[40px] rounded-xl" src={logo} alt="logo" /> */}
+          <h2 className="font-bold">Chronolite</h2>
         </Link>
 
         {/* Hamburger Icon for Mobile */}
@@ -93,7 +96,7 @@ function NavBar() {
             </button>
           </div>
           {links.map((link, index) => (
-            <li key={index} className="mt-8 lg:mt-0 text-center lg:flex-grow ">
+            <li key={index} className="mt-8 lg:mt-0 text-center lg:flex-grow">
               <Link
                 className="block py-2 px-4 text-white hover:text-blue-300 text-xl justify-center items-center"
                 to={link.href}
