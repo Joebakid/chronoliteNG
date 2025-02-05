@@ -7,6 +7,7 @@ import FemaleBags from "./components/FemaleBags";
 import Review from "./components/Review";
 import Footer from "./components/Footer";
 import PlainTee from "./components/PlainTee";
+import Cap from "./components/Cap";
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
             <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
             <Route path="/Review" element={<Review Btn={Btn} />} />
+            <Route path="/cap" element={<Cap Btn={Btn} />} />
           </Routes>
         </main>
 

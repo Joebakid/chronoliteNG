@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import WatchGrid from "./WatchGrid";
-import cap from "../watches.json"; // Import watches JSON data
+import cap from "../cap.json";
 
-function Watches({ Btn }) {
+function Cap({ Btn }) {
   useEffect(() => {
     document.title = "Watch"; // Update the tab name
   }, []); // Empty dependency array means this effect runs once on mount
   return <WatchGrid Btn={Btn} items={cap} />;
 }
 
-export default Watches;
+export default Cap;

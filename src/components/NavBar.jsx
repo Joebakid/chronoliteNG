@@ -9,7 +9,7 @@ function NavBar() {
     { text: "Watches", href: "/" },
     { text: "Female Bags", href: "/femalebags" },
     { text: "Plain Tee  ", href: "/plaintee" }, // ✅ Added "Plain Tee"
-
+    { text: "Cap  ", href: "/cap" },
     { text: "Review", href: "/review" },
   ];
 
