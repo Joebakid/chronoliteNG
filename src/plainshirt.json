@@ -1,12 +1,77 @@
-[
+﻿[
   {
-    "name": "shirt 1",
+    "name": "Customize Tee",
     "img": "https://ik.imagekit.io/Cartel/shirt/1.jpg?updatedAt=1738709004362",
-    "price": "15000"
+    "price": 15000
   },
   {
-    "name": "shirt 2",
-    "img": "https://ik.imagekit.io/Cartel/plainTee/2.jpg?updatedAt=1738683https://ik.imagekit.io/Cartel/shirt/2.jpg?updatedAt=1738709005350",
-    "price": "15284"
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/10.jpg?updatedAt=1738709004536",
+    "price": 14000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/11.jpg?updatedAt=1738709004770",
+    "price": 20000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/3.jpg?updatedAt=1738709004983",
+    "price": 15000
+  },
+  {
+    "name": "Basic White",
+    "img": "https://ik.imagekit.io/Cartel/shirt/14.jpg?updatedAt=1738709004998",
+    "price": 14000
+  },
+  {
+    "name": "White Smoker",
+    "img": "https://ik.imagekit.io/Cartel/shirt/5.jpg?updatedAt=1738709005034",
+    "price": 15000
+  },
+  {
+    "name": "BYC",
+    "img": "https://ik.imagekit.io/Cartel/shirt/4.jpg?updatedAt=1738709005031",
+    "price": 11000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/2.jpg?updatedAt=1738709005350",
+    "price": 20000
+  },
+  {
+    "name": "Colored Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/6.jpg?updatedAt=1738709005357",
+    "price": 20
+  },
+  {
+    "name": "Myles Morales Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/12.jpg?updatedAt=1738709005328",
+    "price": 20000
+  },
+  {
+    "name": "BYC",
+    "img": "https://ik.imagekit.io/Cartel/shirt/13.jpg?updatedAt=1738709005355",
+    "price": 7000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/7.jpg?updatedAt=1738709007675",
+    "price": 15000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/8.jpg?updatedAt=1738709007678",
+    "price": 20000
+  },
+  {
+    "name": "Customize Tee",
+    "img": "https://ik.imagekit.io/Cartel/shirt/9.jpg?updatedAt=1738709007703",
+    "price": 15000
+  },
+  {
+    "name": "BYC",
+    "img": "https://ik.imagekit.io/Cartel/shirt/15.jpg?updatedAt=1738723371061",
+    "price": 5000
   }
 ]
