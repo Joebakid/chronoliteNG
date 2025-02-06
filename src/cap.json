@@ -1,62 +1,54 @@
 ﻿[
   {
-    "name": "Cap Model Plain",
+    "name": "Net Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/2.jpg?updatedAt=1738709007756",
     "price": "3000"
   },
+
   {
-    "name": "Cap Model Customize",
-    "img": "https://ik.imagekit.io/Cartel/cap/2.jpg?updatedAt=1738709007756",
-    "price": "6000"
-  },
-  {
-    "name": "Cap Model Plain",
+    "name": "Suede Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/1.jpg?updatedAt=1738709007935",
     "price": "6000"
   },
+
   {
-    "name": "Cap Model Customize",
-    "img": "https://ik.imagekit.io/Cartel/cap/1.jpg?updatedAt=1738709007935",
-    "price": "9000"
-  },
-  {
-    "name": "Cap Model 5",
+    "name": " Customized net Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/5.jpg?updatedAt=1738709008032",
     "price": "9000"
   },
   {
-    "name": "Cap Model Plain",
+    "name": "Jean Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/4.jpg?updatedAt=1738709008150",
     "price": "4000"
   },
   {
-    "name": "Cap Model Customize",
+    "name": "Jean Customized Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/4.jpg?updatedAt=1738709008150",
     "price": "7000"
   },
   {
-    "name": "Cap Model 6",
+    "name": "Customized Net Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/6.jpg?updatedAt=1738709008152",
     "price": "9000"
   },
   {
-    "name": "Cap Model Plain",
+    "name": "Plain Strapped Snapback",
     "img": "https://ik.imagekit.io/Cartel/cap/3.jpg?updatedAt=1738709008358",
     "price": "5000"
   },
   {
-    "name": "Cap Model Customize",
+    "name": "Customized Strapped Snapback",
     "img": "https://ik.imagekit.io/Cartel/cap/3.jpg?updatedAt=1738709008358",
     "price": "7000"
   },
   {
-    "name": "Cap Model 7",
+    "name": "Customized Net Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/7.jpg?updatedAt=1738709008537",
-    "price": "20000"
+    "price": "10000"
   },
   {
-    "name": "Cap Model 8",
+    "name": "Customized Net Cap",
     "img": "https://ik.imagekit.io/Cartel/cap/8.jpg?updatedAt=1738709009928",
-    "price": "20000"
+    "price": "10000"
   }
 ]
