@@ -8,6 +8,7 @@ import Review from "./components/Review";
 import Footer from "./components/Footer";
 import PlainTee from "./components/PlainTee";
 import Cap from "./components/Cap";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -21,6 +22,7 @@ function App() {
   return (
     <Router>
       {/* Main Container */}
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <NavBar />
 
