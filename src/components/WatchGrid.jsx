@@ -46,21 +46,29 @@ function WatchGrid({ Btn, items }) {
       
       {/* Pagination Controls */}
       <div className="flex justify-center mt-4 gap-2">
-        <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
-        <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+      <button
+  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
+  onClick={() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scrolls to top smoothly
+  }}
+  disabled={currentPage === 1}
+>
+  &lt;&lt;
+</button>
+
+<span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+
+<button
+  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
+  onClick={() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scrolls to top smoothly
+  }}
+  disabled={currentPage === totalPages}
+>
+  &gt;&gt;
+</button>
       </div>
     </div>
   );
