@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'FireCode';
+  src: url('FireCode-Regular.ttf') format('truetype'),
+       url('FireCode-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'FireCode', monospace;
+  font-size: 16px;
+  color: #ffffff;  
+  background-color: #121212; 
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

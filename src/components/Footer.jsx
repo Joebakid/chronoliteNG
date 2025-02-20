@@ -5,7 +5,7 @@ function Footer() {
     <footer className="bg-gray-900 text-white py-4 text-center">
       <div className="container mx-auto">
         <p className="text-sm">
-          © {new Date().getFullYear()} Chronolite NG. All rights reserved.
+          ©  2025 Chronolite NG. All rights reserved.
         </p>
         <div className="mt-2">
           <a
