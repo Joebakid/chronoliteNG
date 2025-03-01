@@ -1,8 +1,105 @@
 [
   {
+    "name": "Woven Pattern Handbag For Women, Stylish Mini Crossbody Bag, Simple Ruched Hobo Bag & Purse",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/2dbb8f7daf11e5226b10ca8b5d79f85a.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "22500"
+  },
+  {
+    "name": "Woven Pattern Handbag For Women, Stylish Mini Crossbody Bag, Simple Ruched Hobo Bag & Purse",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/d2821a4bd2b3f77cf6451ae8e914c859.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "22500"
+  },
+  {
     "name": "Chic Faux Fur Crossbody Bag for Women - Soft Plush Shoulder Handbag with Zip Closure, Versatile Solid Color, Perfect for Fall & Winter",
     "img": "https://img.kwcdn.com/product/open/2024-09-27/1727407597888-7d2ee84717ce4d569d9d128d2133c491-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
-    "price": "20000"
+    "price": "17500"
+  },
+  {
+    "name": "Chic Khaki Plush Women's Clutch - Fashionable Faux Fur Shoulder & Crossbody Bag with Zip Closure, Autumn Winter, Hand Carry",
+    "img": "https://img.kwcdn.com/product/fancy/6f1b27cf-85a2-4824-9435-73cd96f2c4a1.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "17000"
+  },
+  {
+    "name": "Chic Leopard Print Plush Shoulder Bag for Women - Fashionable Underarm Handbag with Zip Closure, Black/White",
+    "img": "https://img.kwcdn.com/product/open/7cd048cacccf4352be9cb588f1d569ac-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
+    "price": "8000"
+  },
+  {
+    "name": "Neutral Square Bag Trendy New Crossbody Bag Male and Female College Student Postman All-Match Class Leisure Class Single-Shoulder Bag [Random Zipper Direction]",
+    "img": "https://img.kwcdn.com/product/fancy/3b8d9fb3-7ccc-448f-a779-842080afc086.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "8000"
+  },
+  {
+    "name": "Elegant Black Softshell Crossbody Bag with Adjustable Strap and Zipper Closure - Perfect for Everyday Carry",
+    "img": "https://img.kwcdn.com/product/fancy/a4286a3e-dc7e-40b8-900e-39b614d15132.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "5600"
+  },
+  {
+    "name": "1pc Tribal Style Shoulder Bag, Foldable Crossbody with Zipper Closure, Striped Pattern, Flag Theme, Hand Washable, Edge Painted Lining",
+    "img": "https://img.kwcdn.com/product/fancy/1d476191-e783-404e-be69-19178246361e.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "10000"
+  },
+  {"name": "1pc Corduroy Shoulder Tote Bag for Women, Solid Color, Large Capacity, Casual Artsy Design, Buckle Closure, Polyester Lined, Ideal for Travel and Gifting ",
+    "img": " https://img.kwcdn.com/product/fancy/30c262f1-dc82-4a84-8440-a2529d45c7bb.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "16000 " },
+  {"name": " 1pc Women'S Casual Faux Leather Tote Bag with Mini Deer Charm, Solid Color, Lightweight, Large Capacity, Simple Design, Daily Shoulder Bag with Fixed Straps and Magnetic Closure, Polyester Lined",
+    "img": " https://img.kwcdn.com/product/fancy/f8a62209-608c-4e44-ae1f-2bca380ce303.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "15000 " },
+  {"name": "[Durable Build] Stylish Beige Butterfly Tote Bag with Motivational Quote - Large Capacity, Lightweight, Durable & Fashionable for Travel, Daily Commute, Beach, or Casual Outings, Casual Tote | Butterfly Graphic Tote | Durable Material, Butterfly Purse ",
+    "img": " https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/0dcb43f7081bb3a19a1d06d367a97396.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "14000 " },
+  {"name": "Floral Embroidery Tote Bag, Fashion Zipper Shoulder Bag, Women's Large Capacity Handbag For Going Out ",
+    "img": "https://img.kwcdn.com/product/open/2024-01-22/1705928043672-f6d87d973cbb49a5b0325dd75ec40a65-goods.jpeg?imageView2/2/w/800/q/70/format/webp ",
+    "price": "18000 " },
+  {"name": "Chic Black Nylon Crossbody Bag for Women - Casual, Lightweight with Adjustable Strap, Zip Closure ",
+    "img": "https://img.kwcdn.com/product/fancy/00e1dbf0-dcd9-4219-a100-80c0329b5a73.jpg?imageView2/2/w/800/q/70/format/webp ",
+    "price": "12000 " },
+  {"name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
+    "img": "https://img.kwcdn.com/product/fancy/0f6cb052-dce6-4d58-90a7-dcdb81ad3831.jpg?imageView2/2/w/800/q/70/format/webp ",
+    "price": "17000 " },
+  {"name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
+    "img": "https://img.kwcdn.com/product/fancy/618797ab-bbab-4e31-a324-b58208fc83a7.jpg?imageView2/2/w/800/q/70/format/webp ",
+    "price": "17000 " },
+  {"name": " Chic Women's Plush Crossbody Bag - Faux Fur, Adjustable Strap, Zip Closure | Versatile & Stylish for Fall/Winter | Available in Khaki, Light Grey, Dark Khaki, Cream, Pink",
+    "img": "https://img.kwcdn.com/product/fancy/753ff73e-f8fd-4d7f-8247-7bb64dcc5ff7.jpg?imageView2/2/w/800/q/70/format/webp ",
+    "price": "16000 " },
+  {"name": " ",
+    "img": " ",
+    "price": " " },
+  {
+    "name": "Simple And Stylish Shoulder Bag with Adjustable Strap, Stitched Embroidery, Foldable And Spacious",
+    "img": "https://img.kwcdn.com/product/open/2024-05-27/1716771622512-215c0c7d78314bb38c50322ea17116de-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
+    "price": "12000"
+  },
+  {
+    "name": "Elegant Plush Women's Shoulder Bag - Large Capacity, Chic Winter Fashion in Black, Cream, and Beige with Golden-Tone Hardware, Crossbody or One-Shoulder Carry, Lightweight, Zip Closure, Polyester Lined, Crossbody Purse",
+    "img": "https://img.kwcdn.com/product/fancy/cb6b8fa4-108f-4540-a9f1-9051f87c1f3e.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "15000"
+  },
+  {
+    "name": "Women's Retro Hobo Purse - Stylish Synthetic Leather Handbag with Zipper Closure, Available in White/Green/Black, Perfect for Casual Everyday Use, Vacation Shoulder Bag | Retro Style Bag | Adjustable Strap",
+    "img": "https://img.kwcdn.com/product/open/2024-06-29/1719670703780-8f8d17af9a3e45b2a9fd796cd8f3830d-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
+    "price": "8000"
+  },
+  {
+    "name": "Plush Soft Single Shoulder Crossbody Bag, Fashionable Versatile Tote for Men and Women, Ideal for Daily Use and Outings, Large Capacity Cosmetic Storage, Perfect Gift - Available in Coffee//Black",
+    "img": "https://img.kwcdn.com/product/fancy/d34491d4-13d2-42d0-958b-720fee44935c.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "15000"
+  },
+  {
+    "name": "Chic Boho Tassel Crossbody Bag for Women - Colorful Geometric Stripe Canvas Shoulder Bag, 11-inch, Zip Closure, Waterproof, Ideal for Travel & Daily Fashion",
+    "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/8050377086e6362ec75b5e84e43e9def.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "13000"
+  },
+  {
+    "name": "Nylon Shoulder Bag For Women, Large Capacity Crossbody Tote, Fashionable Solid Color, Class Bag With Coin Pouch",
+    "img": "https://img.kwcdn.com/product/fancy/a6309bc8-e8de-4792-96f1-96e2ec0956a1.jpg?imageView2/2/w/800/q/70/format/webp",
+    "price": "13500"
+  },
+  {
+    "name": "Mini Fashion Solid Color Women Plush Shoulder Bag Handbag",
+    "img": "https://img.kwcdn.com/product/open/2024-08-04/1722794424174-85bc96a1c88b4908ba62193dcc18a575-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
+    "price": "8000"
   },
   {
     "name": "Cloud Ruche Handbag, Niche Design Crossbody Bag, Fashion Pleated Hobo Bag, Purse For Women",
