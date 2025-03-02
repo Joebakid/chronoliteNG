@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function WatchGrid({ Btn, items }) {
@@ -21,6 +21,11 @@ function WatchGrid({ Btn, items }) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // Scroll to top whenever the page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   return (
     <div className="container-custom mt-40">
@@ -46,29 +51,23 @@ function WatchGrid({ Btn, items }) {
       
       {/* Pagination Controls */}
       <div className="flex justify-center mt-4 gap-2">
-      <button
-  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-  onClick={() => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scrolls to top smoothly
-  }}
-  disabled={currentPage === 1}
->
-  &lt;&lt;
-</button>
+        <button
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          &lt;&lt;
+        </button>
 
-<span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
 
-<button
-  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-  onClick={() => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scrolls to top smoothly
-  }}
-  disabled={currentPage === totalPages}
->
-  &gt;&gt;
-</button>
+        <button
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          &gt;&gt;
+        </button>
       </div>
     </div>
   );
