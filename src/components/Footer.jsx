@@ -4,9 +4,7 @@ function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-4 text-center">
       <div className="container mx-auto">
-        <p className="text-sm">
-          ©  2025 Chronolite NG. All rights reserved.
-        </p>
+        <p className="text-sm">© 2025 Chronolite NG. All rights reserved.</p>
         <div className="mt-2">
           <a
             href="https://josephbawo.com"
@@ -18,7 +16,7 @@ function Footer() {
           </a>
           |
           <a
-            href="https://instagram.com/chronoliteng"
+            href="https://instagram.com/chronolite.ng"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline mx-2"
