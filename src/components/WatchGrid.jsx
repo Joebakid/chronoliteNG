@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function WatchGrid({ Btn, items }) {
-  const whatsappNumber = "2349013550698";
+  const whatsappNumber = "2349037291405";
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
