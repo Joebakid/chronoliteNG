@@ -4,115 +4,103 @@ import { v4 as uuidv4 } from "uuid";
 
 function WatchGrid({ items }) {
   const whatsappNumber = "2349037291405"; // Your WhatsApp number
-  const publicKey = "pk_live_ba4eb72e1e6122cfe8c2fd97c6a225ded24619f7"; // Replace with your Paystack public key
+  const publicKey = "pk_live_ba4eb72e1e6122cfe8c2fd97c6a225ded24619f7";
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
   });
 
-  // Fix: Keep original price as a number for Paystack while formatting for display
-  const formattedItems = items.map((item) => ({
-    ...item,
-    formattedPrice: formatter.format(item.price), // Display price
-  }));
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    whatsapp: "",
+    email: "",
+    address: "",
+  });
 
-  const itemsPerPage = 12;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(formattedItems.length / itemsPerPage);
-  const paginatedItems = formattedItems.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const handleOpenForm = (item) => {
+    setSelectedItem(item);
+    setIsFormOpen(true);
+  };
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handlePaymentSuccess = (response, item) => {
+  const handlePaymentSuccess = (response) => {
     console.log("Payment Successful", response);
-
-    // Redirect user to WhatsApp with payment confirmation
+    
     const message = encodeURIComponent(
-      `Hello, I just paid for "${item.name}" priced at ${item.formattedPrice}. My payment reference is ${response.reference}.`
+      `Hello, I just paid for \"${selectedItem.name}\" priced at ${formatter.format(
+        selectedItem.price
+      )}. My payment reference is ${response.reference}.\n\nHere are my details:\nName: ${formData.fullName}\nWhatsApp: ${formData.whatsapp}\nEmail: ${formData.email}\nAddress: ${formData.address}`
     );
+    
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
 
   return (
     <div className="container-custom mt-40">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        {paginatedItems.map((item) => (
+        {items.map((item) => (
           <div
             key={uuidv4()}
-            className="border p-4 flex flex-col gap-4 rounded-lg card-custom transition-custom text-center"
+            className="border p-4 flex flex-col gap-4 rounded-lg card-custom text-center"
           >
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
-            <p>{item.formattedPrice}</p>
+            <p>{formatter.format(item.price)}</p>
 
-            {/* Paystack Button - Corrected Amount Calculation */}
-            <PaystackButton
+            <button
               className="bg-blue-500 text-white px-4 py-2 rounded"
-              amount={item.price * 100} // Convert to kobo without formatting issues
-              email={`user-${Date.now()}@paystack.com`} // Generates a unique email for Paystack
-              publicKey={publicKey}
-              text="Pay Now"
-              onSuccess={(response) => handlePaymentSuccess(response, item)}
-            />
-
-            {/* Direct WhatsApp Contact */}
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hello, I'm interested in "${item.name}" priced at ${item.formattedPrice}. Here is the image link: ${item.img}`
-              )}`}
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              onClick={() => handleOpenForm(item)}
             >
-              Contact on WhatsApp
-            </a>
+              Pay Now
+            </button>
           </div>
         ))}
       </div>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-4 gap-2">
-        <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          &lt;&lt;
-        </button>
+      {/* Form Modal */}
+      {isFormOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg w-96">
+            <h2 className="text-lg font-bold mb-4">Enter Your Details</h2>
+            <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
+            <input type="text" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
+            <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
+            <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
 
-        <span className="px-4 py-2">
-          Page {currentPage} of {totalPages}
-        </span>
-
-        <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          &gt;&gt;
-        </button>
-      </div>
+            <PaystackButton
+              className="bg-green-500 text-white px-4 py-2 rounded w-full"
+              amount={selectedItem.price * 100}
+              email={formData.email}
+              publicKey={publicKey}
+              text="Proceed to Payment"
+              onSuccess={handlePaymentSuccess}
+            />
+            <button
+              className="mt-2 text-red-500 underline w-full"
+              onClick={() => setIsFormOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-// ImageWithLoader Component
 function ImageWithLoader({ src, alt }) {
   const [isLoading, setIsLoading] = useState(true);
   return (
     <div className="relative w-full h-72 flex items-center justify-center">
-      {isLoading && (
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="loader"></div>
-        </div>
-      )}
+      {isLoading && <div className="loader"></div>}
       <img
-        className={`w-full h-full rounded-md object-cover transition-opacity ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
+        className={`w-full h-full rounded-md object-cover ${isLoading ? "opacity-0" : "opacity-100"}`}
         src={src}
         alt={alt}
         onLoad={() => setIsLoading(false)}
@@ -121,7 +109,6 @@ function ImageWithLoader({ src, alt }) {
   );
 }
 
-// NameDisplay Component
 function NameDisplay({ name }) {
   const [showFullName, setShowFullName] = useState(false);
   return (
@@ -131,7 +118,7 @@ function NameDisplay({ name }) {
       </h3>
       {name.length > 20 && (
         <button
-          onClick={() => setShowFullName((prev) => !prev)}
+          onClick={() => setShowFullName(!showFullName)}
           className="text-blue-500 text-sm underline"
         >
           {showFullName ? "Show Less" : "Show More"}
