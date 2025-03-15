@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { PaystackButton } from "react-paystack";
 import { v4 as uuidv4 } from "uuid";
 
-function WatchGrid({ Btn, items }) {
-  const whatsappNumber = "2349037291405";
+function WatchGrid({ items }) {
+  const whatsappNumber = "2349037291405"; // Your WhatsApp number
+  const publicKey = "pk_live_ba4eb72e1e6122cfe8c2fd97c6a225ded24619f7"; // Replace with your Paystack public key
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
@@ -16,16 +18,24 @@ function WatchGrid({ Btn, items }) {
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(formattedItems.length / itemsPerPage);
-  
   const paginatedItems = formattedItems.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  // Scroll to top whenever the page changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
+
+  const handlePaymentSuccess = (response, item) => {
+    console.log("Payment Successful", response);
+
+    // Redirect user to WhatsApp with payment confirmation
+    const message = encodeURIComponent(
+      `Hello, I just paid for "${item.name}" priced at ${item.price}. My payment reference is ${response.reference}.`
+    );
+    window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+  };
 
   return (
     <div className="container-custom mt-40">
@@ -38,17 +48,30 @@ function WatchGrid({ Btn, items }) {
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
             <p>{item.price}</p>
-            <Btn
-              text="Contact on WhatsApp"
-              btnClassName="bg-green-500 text-white px-4 py-2 rounded"
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hello, I'm interested in the product "${item.name}" priced at ${item.price}. Here is the image link: ${item.img}`
-              )}`}
+
+            {/* Paystack Button */}
+            <PaystackButton
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              amount={parseInt(item.price.replace(/[^0-9]/g, "")) * 100} // Convert price to kobo
+              email={`user-${Date.now()}@paystack.com`} // Generates a unique email for Paystack (since there's no login)
+              publicKey={publicKey}
+              text="Pay Now"
+              onSuccess={(response) => handlePaymentSuccess(response, item)}
             />
+
+            {/* Direct WhatsApp Contact */}
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                `Hello, I'm interested in "${item.name}" priced at ${item.price}. Here is the image link: ${item.img}`
+              )}`}
+              className="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              Contact on WhatsApp
+            </a>
           </div>
         ))}
       </div>
-      
+
       {/* Pagination Controls */}
       <div className="flex justify-center mt-4 gap-2">
         <button
@@ -59,7 +82,9 @@ function WatchGrid({ Btn, items }) {
           &lt;&lt;
         </button>
 
-        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+        <span className="px-4 py-2">
+          Page {currentPage} of {totalPages}
+        </span>
 
         <button
           className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
