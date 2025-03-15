@@ -10,9 +10,10 @@ function WatchGrid({ items }) {
     currency: "NGN",
   });
 
+  // Fix: Keep original price as a number for Paystack while formatting for display
   const formattedItems = items.map((item) => ({
     ...item,
-    price: formatter.format(item.price),
+    formattedPrice: formatter.format(item.price), // Display price
   }));
 
   const itemsPerPage = 12;
@@ -32,7 +33,7 @@ function WatchGrid({ items }) {
 
     // Redirect user to WhatsApp with payment confirmation
     const message = encodeURIComponent(
-      `Hello, I just paid for "${item.name}" priced at ${item.price}. My payment reference is ${response.reference}.`
+      `Hello, I just paid for "${item.name}" priced at ${item.formattedPrice}. My payment reference is ${response.reference}.`
     );
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
@@ -47,13 +48,13 @@ function WatchGrid({ items }) {
           >
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
-            <p>{item.price}</p>
+            <p>{item.formattedPrice}</p>
 
-            {/* Paystack Button */}
+            {/* Paystack Button - Corrected Amount Calculation */}
             <PaystackButton
               className="bg-blue-500 text-white px-4 py-2 rounded"
-              amount={parseInt(item.price.replace(/[^0-9]/g, "")) * 100} // Convert price to kobo
-              email={`user-${Date.now()}@paystack.com`} // Generates a unique email for Paystack (since there's no login)
+              amount={item.price * 100} // Convert to kobo without formatting issues
+              email={`user-${Date.now()}@paystack.com`} // Generates a unique email for Paystack
               publicKey={publicKey}
               text="Pay Now"
               onSuccess={(response) => handlePaymentSuccess(response, item)}
@@ -62,7 +63,7 @@ function WatchGrid({ items }) {
             {/* Direct WhatsApp Contact */}
             <a
               href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hello, I'm interested in "${item.name}" priced at ${item.price}. Here is the image link: ${item.img}`
+                `Hello, I'm interested in "${item.name}" priced at ${item.formattedPrice}. Here is the image link: ${item.img}`
               )}`}
               className="bg-green-500 text-white px-4 py-2 rounded"
             >
