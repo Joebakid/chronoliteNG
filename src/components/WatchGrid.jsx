@@ -82,7 +82,7 @@ function WatchGrid({ items }) {
               onSuccess={handlePaymentSuccess}
             />
             <button
-              className="mt-2 text-red-500 underline w-full"
+              className="mt-2 text-red-600 underline w-full"
               onClick={() => setIsFormOpen(false)}
             >
               Cancel
