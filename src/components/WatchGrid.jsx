@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PaystackButton } from "react-paystack";
-import { v4 as uuidv4 } from "uuid";
 
-function WatchGrid({ items }) {
+const WatchGrid = ({ items }) => {
   const whatsappNumber = "2349037291405"; // Your WhatsApp number
   const publicKey = "pk_live_ba4eb72e1e6122cfe8c2fd97c6a225ded24619f7";
   const formatter = new Intl.NumberFormat("en-NG", {
@@ -31,13 +30,19 @@ function WatchGrid({ items }) {
 
   const handlePaymentSuccess = (response) => {
     console.log("Payment Successful", response);
-    
+
     const message = encodeURIComponent(
-      `Hello, I just paid for \"${selectedItem.name}\" priced at ${formatter.format(
+      `Hello, I just paid for "${selectedItem.name}" priced at ${formatter.format(
         selectedItem.price
-      )}. My payment reference is ${response.reference}.\n\nHere are my details:\nName: ${formData.fullName}\nWhatsApp: ${formData.whatsapp}\nEmail: ${formData.email}\nAddress: ${formData.address}`
+      )}. My payment reference is ${response.reference}.
+
+Here are my details:
+Name: ${formData.fullName}
+WhatsApp: ${formData.whatsapp}
+Email: ${formData.email}
+Address: ${formData.address}`
     );
-    
+
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
 
@@ -46,7 +51,7 @@ function WatchGrid({ items }) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {items.map((item) => (
           <div
-            key={uuidv4()}
+            key={item.id}
             className="border p-4 flex flex-col gap-4 rounded-lg card-custom text-center"
           >
             <ImageWithLoader src={item.img} alt={item.name} />
@@ -63,13 +68,12 @@ function WatchGrid({ items }) {
         ))}
       </div>
 
-      {/* Form Modal */}
       {isFormOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-96">
             <h2 className="text-lg font-bold mb-4">Enter Your Details</h2>
             <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
-            <input type="text" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
+            <input type="text" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleChange} className="w-full mb-2 p-2 border rounded text-black" required />
             <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
 
@@ -92,9 +96,9 @@ function WatchGrid({ items }) {
       )}
     </div>
   );
-}
+};
 
-function ImageWithLoader({ src, alt }) {
+const ImageWithLoader = React.memo(({ src, alt }) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
     <div className="relative w-full h-72 flex items-center justify-center">
@@ -107,9 +111,9 @@ function ImageWithLoader({ src, alt }) {
       />
     </div>
   );
-}
+});
 
-function NameDisplay({ name }) {
+const NameDisplay = React.memo(({ name }) => {
   const [showFullName, setShowFullName] = useState(false);
   return (
     <div className="text-center">
@@ -126,6 +130,6 @@ function NameDisplay({ name }) {
       )}
     </div>
   );
-}
+});
 
 export default WatchGrid;

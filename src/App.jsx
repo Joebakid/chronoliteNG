@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import PlainTee from "./components/PlainTee";
 import Cap from "./components/Cap";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react"
 
 function Btn({ text, btnClassName, href }) {
   return (
