@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PaystackButton } from "react-paystack";
 
 const WatchGrid = ({ items }) => {
-  const whatsappNumber = "2349037291405"; // Your WhatsApp number
+  const whatsappNumber = "2349037291405";
   const publicKey = "pk_live_ba4eb72e1e6122cfe8c2fd97c6a225ded24619f7";
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
@@ -18,6 +18,10 @@ const WatchGrid = ({ items }) => {
     address: "",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
   const handleOpenForm = (item) => {
     setSelectedItem(item);
     setIsFormOpen(true);
@@ -30,26 +34,26 @@ const WatchGrid = ({ items }) => {
 
   const handlePaymentSuccess = (response) => {
     console.log("Payment Successful", response);
-
     const message = encodeURIComponent(
       `Hello, I just paid for "${selectedItem.name}" priced at ${formatter.format(
         selectedItem.price
       )}. My payment reference is ${response.reference}.
-
-Here are my details:
-Name: ${formData.fullName}
-WhatsApp: ${formData.whatsapp}
-Email: ${formData.email}
-Address: ${formData.address}`
+      \nHere are my details:
+      \nName: ${formData.fullName}
+      \nWhatsApp: ${formData.whatsapp}
+      \nEmail: ${formData.email}
+      \nAddress: ${formData.address}`
     );
-
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
 
+  const paginatedItems = items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
   return (
     <div className="container-custom mt-40">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        {items.map((item, index) => (
+      {/* Responsive Grid (2 columns on mobile, 3 on desktop) */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {paginatedItems.map((item, index) => (
           <div
             key={item.id || index}
             className="border p-4 flex flex-col gap-4 rounded-lg card-custom text-center"
@@ -57,15 +61,30 @@ Address: ${formData.address}`
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
             <p>{formatter.format(item.price)}</p>
-
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => handleOpenForm(item)}
-            >
+            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handleOpenForm(item)}>
               Pay Now
             </button>
           </div>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          className="px-4 py-2 border rounded disabled:opacity-50"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+        <button
+          className="px-4 py-2 border rounded disabled:opacity-50"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
 
       {isFormOpen && (
@@ -76,7 +95,6 @@ Address: ${formData.address}`
             <input type="text" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleChange} className="w-full mb-2 p-2 border rounded text-black" required />
             <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
             <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
-
             <PaystackButton
               className="bg-green-500 text-white px-4 py-2 rounded w-full"
               amount={selectedItem.price * 100}
@@ -85,10 +103,7 @@ Address: ${formData.address}`
               text="Proceed to Payment"
               onSuccess={handlePaymentSuccess}
             />
-            <button
-              className="mt-2 text-red-600 underline w-full"
-              onClick={() => setIsFormOpen(false)}
-            >
+            <button className="mt-2 text-red-600 underline w-full" onClick={() => setIsFormOpen(false)}>
               Cancel
             </button>
           </div>
@@ -101,7 +116,7 @@ Address: ${formData.address}`
 const ImageWithLoader = React.memo(({ src, alt }) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <div className="relative w-full h-72 flex items-center justify-center">
+    <div className="relative w-full h-32 md:h-40 flex items-center justify-center">
       {isLoading && <div className="loader"></div>}
       <img
         className={`w-full h-full rounded-md object-cover ${isLoading ? "opacity-0" : "opacity-100"}`}
