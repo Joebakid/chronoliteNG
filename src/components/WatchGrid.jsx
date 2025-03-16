@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PaystackButton } from "react-paystack";
 
 const WatchGrid = ({ items }) => {
@@ -19,7 +19,17 @@ const WatchGrid = ({ items }) => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      setItemsPerPage(window.innerWidth >= 768 ? 12 : 6);
+    };
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
+
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
   const handleOpenForm = (item) => {
@@ -33,7 +43,6 @@ const WatchGrid = ({ items }) => {
   };
 
   const handlePaymentSuccess = (response) => {
-    console.log("Payment Successful", response);
     const message = encodeURIComponent(
       `Hello, I just paid for "${selectedItem.name}" priced at ${formatter.format(
         selectedItem.price
@@ -47,11 +56,13 @@ const WatchGrid = ({ items }) => {
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
 
-  const paginatedItems = items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const paginatedItems = items.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="container-custom mt-40">
-      {/* Responsive Grid (2 columns on mobile, 3 on desktop) */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {paginatedItems.map((item, index) => (
           <div
@@ -61,14 +72,16 @@ const WatchGrid = ({ items }) => {
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
             <p>{formatter.format(item.price)}</p>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handleOpenForm(item)}>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => handleOpenForm(item)}
+            >
               Pay Now
             </button>
           </div>
         ))}
       </div>
 
-      {/* Pagination */}
       <div className="flex justify-center gap-4 mt-6">
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
@@ -77,7 +90,9 @@ const WatchGrid = ({ items }) => {
         >
           Previous
         </button>
-        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+        <span className="px-4 py-2">
+          Page {currentPage} of {totalPages}
+        </span>
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
@@ -86,29 +101,6 @@ const WatchGrid = ({ items }) => {
           Next
         </button>
       </div>
-
-      {isFormOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg w-96">
-            <h2 className="text-lg font-bold mb-4">Enter Your Details</h2>
-            <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
-            <input type="text" name="whatsapp" placeholder="WhatsApp Number" value={formData.whatsapp} onChange={handleChange} className="w-full mb-2 p-2 border rounded text-black" required />
-            <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
-            <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full mb-2 p-2 border rounded" required />
-            <PaystackButton
-              className="bg-green-500 text-white px-4 py-2 rounded w-full"
-              amount={selectedItem.price * 100}
-              email={formData.email}
-              publicKey={publicKey}
-              text="Proceed to Payment"
-              onSuccess={handlePaymentSuccess}
-            />
-            <button className="mt-2 text-red-600 underline w-full" onClick={() => setIsFormOpen(false)}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
