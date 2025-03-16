@@ -36,8 +36,9 @@ body {
 
 /* Container */
 .container-custom {
-  @apply mx-auto overflow-x-hidden py-5 w-[70%];
+  @apply mx-auto overflow-x-hidden py-5 w-[90%] md:w-[70%];
 }
+
 
 /* Watch grid */
 

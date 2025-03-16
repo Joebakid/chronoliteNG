@@ -56,7 +56,7 @@ const WatchGrid = ({ items }) => {
         {paginatedItems.map((item, index) => (
           <div
             key={item.id || index}
-            className="border p-4 flex flex-col gap-4 rounded-lg card-custom text-center"
+            className="border p-2 flex flex-col gap-4 rounded-lg card-custom text-center"
           >
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
