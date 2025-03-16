@@ -49,9 +49,9 @@ Address: ${formData.address}`
   return (
     <div className="container-custom mt-40">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <div
-            key={item.id}
+            key={item.id || index}
             className="border p-4 flex flex-col gap-4 rounded-lg card-custom text-center"
           >
             <ImageWithLoader src={item.img} alt={item.name} />
