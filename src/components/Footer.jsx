@@ -33,13 +33,14 @@ function Footer() {
             TikTok: @chronoliteng
           </a>
           <a
-  href="https://wa.me/09037291405"
+  href="https://wa.me/2349037291405"
   target="_blank"
   rel="noopener noreferrer"
   className="text-blue-400 hover:underline"
 >
   WhatsApp: 09037291405
 </a>
+
         </div>
       </div>
     </footer>
