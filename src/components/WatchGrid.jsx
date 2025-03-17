@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { usePaystackPayment } from "react-paystack";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const WatchGrid = ({ items }) => {
   const whatsappNumber = "2349037291405";
@@ -94,12 +96,12 @@ const WatchGrid = ({ items }) => {
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-md shadow-md w-96">
-            <h2 className="text-lg font-semibold mb-4">Enter Your Details</h2>
+            <h2 className="text-lg font-semibold mb-4 text-gray-600">Enter Your Details</h2>
             <input
               type="text"
               name="fullName"
               placeholder="Full Name"
-              className="border p-2 w-full mb-2"
+              className="border p-2 w-full mb-2  text-gray-950"
               value={formData.fullName}
               onChange={handleChange}
             />
@@ -107,7 +109,7 @@ const WatchGrid = ({ items }) => {
               type="text"
               name="whatsapp"
               placeholder="WhatsApp Number"
-              className="border p-2 w-full mb-2"
+              className="border p-2 w-full mb-2 text-gray-950"
               value={formData.whatsapp}
               onChange={handleChange}
             />
@@ -115,7 +117,7 @@ const WatchGrid = ({ items }) => {
               type="email"
               name="email"
               placeholder="Email Address"
-              className="border p-2 w-full mb-2"
+              className="border p-2 w-full mb-2 text-gray-950"
               value={formData.email}
               onChange={handleChange}
             />
@@ -123,7 +125,7 @@ const WatchGrid = ({ items }) => {
               type="text"
               name="address"
               placeholder="Delivery Address"
-              className="border p-2 w-full mb-2"
+              className="border p-2 w-full mb-2 text-gray-950"
               value={formData.address}
               onChange={handleChange}
             />
