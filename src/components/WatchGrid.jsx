@@ -1,90 +1,191 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useRef } from "react";
 
-function WatchGrid({ Btn, items }) {
-  const whatsappNumber = "2349013550698";
+const WatchGrid = ({ items }) => {
+  const whatsappNumber = "2349037291405";
+
   const formatter = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
   });
 
-  const formattedItems = items.map((item) => ({
-    ...item,
-    price: formatter.format(item.price),
-  }));
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    whatsapp: "",
+    email: "",
+    address: "",
+  });
 
-  const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(formattedItems.length / itemsPerPage);
-  
-  const paginatedItems = formattedItems.slice(
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      setItemsPerPage(window.innerWidth >= 768 ? 12 : 6);
+    };
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
+
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  const handleOpenForm = (item) => {
+    setSelectedItem(item);
+    setIsFormOpen(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSendToWhatsApp = () => {
+    if (!formData.fullName || !formData.email || !formData.address) {
+      alert("Please fill in all fields before proceeding.");
+      return;
+    }
+
+    const message = encodeURIComponent(
+      `Hello, I'm interested in buying "${selectedItem.name}" priced at ₦${selectedItem.price}.
+      
+Here are my details:
+Name: ${formData.fullName}
+WhatsApp: ${formData.whatsapp}
+Email: ${formData.email}
+Address: ${formData.address}`
+    );
+
+    window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+  };
+
+  const paginatedItems = items.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  // Scroll to top whenever the page changes
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
-
   return (
     <div className="container-custom mt-40">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-        {paginatedItems.map((item) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {paginatedItems.map((item, index) => (
           <div
-            key={uuidv4()}
-            className="border p-4 flex flex-col gap-4 rounded-lg card-custom transition-custom text-center"
+            key={item.id || index}
+            className="border p-2 flex flex-col gap-4 rounded-lg card-custom text-center"
           >
             <ImageWithLoader src={item.img} alt={item.name} />
             <NameDisplay name={item.name} />
-            <p>{item.price}</p>
-            <Btn
-              text="Contact on WhatsApp"
-              btnClassName="bg-green-500 text-white px-4 py-2 rounded"
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `Hello, I'm interested in the product "${item.name}" priced at ${item.price}. Here is the image link: ${item.img}`
-              )}`}
-            />
+            <p>{formatter.format(item.price)}</p>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => handleOpenForm(item)}
+            >
+              Order Now
+            </button>
           </div>
         ))}
       </div>
-      
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-4 gap-2">
+
+      {/* Pagination */}
+      <div className="flex justify-center gap-4 mt-6">
         <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          className="px-4 py-2 border rounded disabled:opacity-50"
+          onClick={() => {
+            setCurrentPage((prev) => {
+              const newPage = Math.max(prev - 1, 1);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              return newPage;
+            });
+          }}
           disabled={currentPage === 1}
         >
-          &lt;&lt;
+          Previous
         </button>
-
-        <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
-
+        <span className="px-4 py-2">
+          Page {currentPage} of {totalPages}
+        </span>
         <button
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          className="px-4 py-2 border rounded disabled:opacity-50"
+          onClick={() => {
+            setCurrentPage((prev) => {
+              const newPage = Math.min(prev + 1, totalPages);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              return newPage;
+            });
+          }}
           disabled={currentPage === totalPages}
         >
-          &gt;&gt;
+          Next
         </button>
       </div>
-    </div>
-  );
-}
 
-// ImageWithLoader Component
-function ImageWithLoader({ src, alt }) {
-  const [isLoading, setIsLoading] = useState(true);
-  return (
-    <div className="relative w-full h-72 flex items-center justify-center">
-      {isLoading && (
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="loader"></div>
+      {/* WhatsApp Form */}
+      {isFormOpen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-md shadow-md w-96">
+            <h2 className="text-lg font-semibold mb-4 text-gray-600">
+              Enter Your Details
+            </h2>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              className="border p-2 w-full mb-2 text-gray-950"
+              value={formData.fullName}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="whatsapp"
+              placeholder="WhatsApp Number"
+              className="border p-2 w-full mb-2 text-gray-950"
+              value={formData.whatsapp}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              className="border p-2 w-full mb-2 text-gray-950"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Delivery Address"
+              className="border p-2 w-full mb-2 text-gray-950"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded w-full"
+              onClick={handleSendToWhatsApp}
+            >
+              Send on WhatsApp
+            </button>
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded w-full mt-2"
+              onClick={() => setIsFormOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
+    </div>
+  );
+};
+
+// Image Loader Component
+const ImageWithLoader = React.memo(({ src, alt }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  return (
+    <div className="relative w-full h-32 md:h-40 flex items-center justify-center">
+      {isLoading && <div className="loader"></div>}
       <img
-        className={`w-full h-full rounded-md object-cover transition-opacity ${
+        className={`w-full h-full rounded-md object-cover ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
         src={src}
@@ -93,19 +194,21 @@ function ImageWithLoader({ src, alt }) {
       />
     </div>
   );
-}
+});
 
-// NameDisplay Component
-function NameDisplay({ name }) {
+// Name Display Component
+const NameDisplay = React.memo(({ name }) => {
   const [showFullName, setShowFullName] = useState(false);
   return (
     <div className="text-center">
       <h3 className="font-medium">
-        {showFullName ? name : name.slice(0, 20) + (name.length > 20 ? "..." : "")}
+        {showFullName
+          ? name
+          : name.slice(0, 20) + (name.length > 20 ? "..." : "")}
       </h3>
       {name.length > 20 && (
         <button
-          onClick={() => setShowFullName((prev) => !prev)}
+          onClick={() => setShowFullName(!showFullName)}
           className="text-blue-500 text-sm underline"
         >
           {showFullName ? "Show Less" : "Show More"}
@@ -113,6 +216,6 @@ function NameDisplay({ name }) {
       )}
     </div>
   );
-}
+});
 
 export default WatchGrid;

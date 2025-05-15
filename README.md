@@ -68,7 +68,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ### 🌟 Connect With Us
 - 🌍 Website: [chronoliteng.com](https://chronoliteng.com)
-- 📧 Email: support@chronoliteng.com
+- 📧 Email: s chronoliteng@gmail.com
 - 📱 Instagram: [@chronolite_ng](https://instagram.com/chronolite_ng)
 - 🐦 Twitter: [@chronolite_ng](https://twitter.com/chronolite_ng)
 
