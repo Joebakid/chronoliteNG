@@ -6,7 +6,7 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    { text: "Watches", href: "/" },
+    { text: "Watches", href: "/watches" },
     { text: "Female Bags", href: "/femalebags" },
     { text: "Plain Tee  ", href: "/plaintee" }, // ✅ Added "Plain Tee"
     { text: "Cap  ", href: "/cap" },

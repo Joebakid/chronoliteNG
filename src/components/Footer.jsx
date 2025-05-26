@@ -7,12 +7,12 @@ function Footer() {
         <p className="text-sm">© 2025 Chronolite NG. All rights reserved.</p>
         <div className="mt-2 flex flex-col sm:flex-row items-center justify-center gap-2">
           <a
-            href="https://josephbawo.com"
+            href="https://josephbawo.tech"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            Made By: josephbawo.com
+            Made By: josephbawo.tech
           </a>
           <span className="hidden sm:inline">|</span> {/* Hidden on mobile */}
           <a
@@ -33,14 +33,13 @@ function Footer() {
             TikTok: @chronoliteng
           </a>
           <a
-  href="https://wa.me/2349037291405"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-blue-400 hover:underline"
->
-  WhatsApp: 09037291405
-</a>
-
+            href="https://wa.me/2349037291405"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            WhatsApp: 09037291405
+          </a>
         </div>
       </div>
     </footer>

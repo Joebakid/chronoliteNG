@@ -9,7 +9,8 @@ import Footer from "./components/Footer";
 import PlainTee from "./components/PlainTee";
 import Cap from "./components/Cap";
 import ScrollToTop from "./components/ScrollToTop";
-import { Analytics } from "@vercel/analytics/react"
+import LandingPage from "./components/LandingPage";
+import { Analytics } from "@vercel/analytics/react";
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -22,24 +23,25 @@ function Btn({ text, btnClassName, href }) {
 function App() {
   return (
     <Router>
-      {/* Main Container */}
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <NavBar />
 
-        {/* Main Content (Centered) */}
+        {/* Main Content */}
         <main className="flex-1 flex items-center justify-center">
           <Routes>
-            <Route path="/" element={<WatchGrid Btn={Btn} />} />
+            <Route path="/" element={<LandingPage />} />{" "}
+            {/* 👈 Landing page only */}
+            <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
             <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
             <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
-            <Route path="/Review" element={<Review Btn={Btn} />} />
+            <Route path="/review" element={<Review Btn={Btn} />} />
             <Route path="/cap" element={<Cap Btn={Btn} />} />
           </Routes>
         </main>
 
-        {/* Footer Stays at Bottom */}
         <Footer />
+        <Analytics />
       </div>
     </Router>
   );

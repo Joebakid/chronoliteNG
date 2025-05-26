@@ -1,18 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap");
+
 @font-face {
-  font-family: 'FireCode';
-  src: url('FireCode-Regular.ttf') format('truetype'),
-       url('FireCode-Bold.ttf') format('truetype');
+  font-family: "FireCode";
+  src: url("FireCode-Regular.ttf") format("truetype"),
+    url("FireCode-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'FireCode', monospace;
+  /* font-family: "FireCode", monospace; */
+  font-family: "Cascadia Code", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
   font-size: 16px;
-  color: #ffffff;  
-  background-color: #121212; 
+  color: #ffffff;
+  background-color: #121212;
 }
-
 
 @tailwind base;
 @tailwind components;
@@ -39,7 +44,6 @@ body {
   @apply mx-auto overflow-x-hidden py-5 w-[90%] md:w-[70%];
 }
 
-
 /* Watch grid */
 
 .grid-custom {
@@ -53,6 +57,29 @@ body {
 .loader {
   @apply border-4 border-solid border-gray-200 border-t-blue-500 rounded-full w-10 h-10;
   animation: spin 1s linear infinite;
+}
+
+.br {
+  background-color: white;
+  height: 0.1rem;
+  width: 2rem;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* .bg {
+  background: url("/public/img/wallpaper.jpg") no-repeat center center;
+  background-size: cover;
+  
+  padding: 100px 0;
+} */
+
+.watch-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='0.4' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='6' x2='12' y2='12'/%3E%3Cline x1='12' y1='12' x2='16' y2='14'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  /* background-size: 150px 150px; */
+  /* opacity: 0.03;  */
 }
 
 @keyframes spin {
