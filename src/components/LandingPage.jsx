@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Wiki from "./WikiBlog";
+import AboutChronolite from "./AboutChronolite";
 
 function CurrentCollection({ src, alt, name, className = "" }) {
   return (
@@ -35,17 +37,15 @@ function LandingPage() {
             in one place.
           </p>
         </div>
-
         <Link
           to="/watches"
           className="inline-block  bg-slate-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300"
         >
           Shop Now
         </Link>
-
         <h3 className="text-xl mt-52 uppercase ">New Collection</h3>
         <div className="br"></div>
-        <div className="flex flex-col md:flex-row mt-0 gap-5 items-center justify-center sm:flex-col  ">
+        <div className="flex flex-col md:flex-row mt-0 gap-5 items-center justify-center sm:flex-col bg-white pt-5 pb-5 text-black rounded">
           <CurrentCollection
             src="https://img.kwcdn.com/product/fancy/8f038be5-7f62-437b-a8f5-ebaeb414776e.jpg?imageView2/2/w/800/q/70/format/webp"
             alt="INCASEDA Chronograph Multifunctional Quartz Watch, Ultra Bright Luminous Fashionable Quartz Watch"
@@ -70,7 +70,6 @@ function LandingPage() {
             className="w-64 h-auto rounded shadow-lg cursor-pointer"
           />
         </div>
-
         <h3 className="text-xl mt-48 uppercase ">OTHER Models</h3>
         <div className="br"></div>
         <div className="flex flex-col md:flex-row mt-0 gap-5 items-center justify-center sm:flex-col  ">
@@ -99,6 +98,8 @@ function LandingPage() {
             className="w-64 h-auto rounded shadow-lg cursor-pointer"
           />
         </div>
+        {/* <Wiki topic="Mechanical watch" /> */}
+        <AboutChronolite />
       </div>
     </div>
   );
