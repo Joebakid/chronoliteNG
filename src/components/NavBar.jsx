@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import logo from "../img/chronolite logo 1.png";
+// import logo from "../img/chronolite logo 1.png";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,12 +18,34 @@ function NavBar() {
     { text: "Review", href: "/review" },
   ];
 
+  const navRef = useRef(null);
+
+  // const buttonRef = useRef(null);
+
+  useEffect(() => {
+    document.title = "Chronolite";
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: navRef.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.fromTo(
+      navRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="bg-slate-600 fixed left-0 right-0 top-0 z-10">
+    <nav ref={navRef} className="bg-slate-600 fixed left-0 right-0 top-0 z-10">
       <div className="container-custom flex items-center justify-between p-1">
         {/* Logo */}
         <Link to="/">
