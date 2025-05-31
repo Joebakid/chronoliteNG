@@ -92,27 +92,31 @@ Address: ${formData.address}`
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
-            setCurrentPage((prev) => {
-              const newPage = Math.max(prev - 1, 1);
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1);
+            }
+            setTimeout(() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              return newPage;
-            });
+            }, 50);
           }}
           disabled={currentPage === 1}
         >
           Previous
         </button>
+
         <span className="px-4 py-2">
           Page {currentPage} of {totalPages}
         </span>
+
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
-            setCurrentPage((prev) => {
-              const newPage = Math.min(prev + 1, totalPages);
+            if (currentPage < totalPages) {
+              setCurrentPage(currentPage + 1);
+            }
+            setTimeout(() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              return newPage;
-            });
+            }, 50);
           }}
           disabled={currentPage === totalPages}
         >
