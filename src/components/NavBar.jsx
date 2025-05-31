@@ -45,8 +45,8 @@ function NavBar() {
   };
 
   return (
-    <nav ref={navRef} className="bg-slate-600 fixed left-0 right-0 top-0 z-10">
-      <div className="container-custom flex items-center justify-between p-1">
+    <nav ref={navRef} className="bg-slate-600 fixed left-0 right-0 top-0 z-50">
+      <div className="container-custom flex items-center justify-between p-1 bg-slate-600">
         {/* Logo */}
         <Link to="/">
           {/* <img className="w-[40px] rounded-xl" src={logo} alt="logo" /> */}
@@ -96,9 +96,9 @@ function NavBar() {
 
         {/* Navigation Links */}
         <ul
-          className={`transition-transform transform ${
+          className={`transition-transform transform bg-slate-600 ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } lg:translate-x-0 lg:flex lg:items-center lg:space-x-6 fixed top-0 right-0 bottom-0 bg-slate-600 lg:bg-transparent w-full lg:w-auto lg:relative p-4 lg:p-0`}
+          } lg:translate-x-0 lg:flex lg:items-center lg:space-x-6 fixed top-0 right-0 bottom-0 bg-slate-600 -z-30 lg:bg-transparent w-full lg:w-auto lg:relative p-4 lg:p-0`}
         >
           <div className="lg:hidden flex justify-end">
             <button
@@ -123,9 +123,12 @@ function NavBar() {
             </button>
           </div>
           {links.map((link, index) => (
-            <li key={index} className="mt-8 lg:mt-0 text-center lg:flex-grow">
+            <li
+              key={index}
+              className="mt-8 lg:mt-0 text-center lg:flex-grow bg-slate-600 z-50 "
+            >
               <Link
-                className="block py-2 px-4 text-white hover:text-blue-300 text-xl justify-center items-center"
+                className="block py-2 px-4 text-white hover:text-blue-300 text-xl justify-center items-center "
                 to={link.href}
                 onClick={() => setIsMenuOpen(false)} // Close menu on link click
               >
