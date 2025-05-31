@@ -44,6 +44,10 @@ body {
   @apply mx-auto overflow-x-hidden py-5 w-[90%] md:w-[70%];
 }
 
+.container-custom-collection {
+  @apply mx-auto overflow-x-hidden py-5 w-[90%] md:w-[100%];
+}
+
 /* Watch grid */
 
 .grid-custom {
@@ -92,7 +96,7 @@ section {
 }
 
 .perspective {
-  perspective: 1000px;
+  /* perspective: 1000px; */
 }
 .transform-style-preserve-3d {
   transform-style: preserve-3d;
