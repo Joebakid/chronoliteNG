@@ -72,17 +72,22 @@ Address: ${formData.address}`
         {paginatedItems.map((item, index) => (
           <div
             key={item.id || index}
-            className="border p-2 flex flex-col gap-4 rounded-lg card-custom text-center"
+            className="border p-2 flex flex-col rounded-lg card-custom text-center h-full min-h-[350px]"
           >
-            <ImageWithLoader src={item.img} alt={item.name} />
-            <NameDisplay name={item.name} />
-            <p>{formatter.format(item.price)}</p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => handleOpenForm(item)}
-            >
-              Order Now
-            </button>
+            <div className="py-2 flex-grow">
+              <ImageWithLoader src={item.img} alt={item.name} />
+              <NameDisplay name={item.name} />
+              <p>{formatter.format(item.price)}</p>
+            </div>
+
+            <div className="mt-auto">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+                onClick={() => handleOpenForm(item)}
+              >
+                Order Now
+              </button>
+            </div>
           </div>
         ))}
       </div>
