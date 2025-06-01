@@ -1,64 +1,62 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-// import logo from "../img/chronolite logo 1.png";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// gsap plugin registration
 gsap.registerPlugin(ScrollTrigger);
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   const links = [
     { text: "Watches", href: "/watches" },
     { text: "Female Bags", href: "/femalebags" },
-    { text: "Plain Tee  ", href: "/plaintee" }, // ✅ Added "Plain Tee"
-    { text: "Cap  ", href: "/cap" },
+    { text: "Plain Tee", href: "/plaintee" },
+    { text: "Cap", href: "/cap" },
     { text: "Review", href: "/review" },
   ];
 
-  const navRef = useRef(null);
-
-  // const buttonRef = useRef(null);
-
   useEffect(() => {
     document.title = "Chronolite";
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: navRef.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    tl.fromTo(
+    gsap.fromTo(
       navRef.current,
       { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 1 }
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: navRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
     );
   }, []);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
   };
 
   return (
-    <nav ref={navRef} className="bg-slate-600 fixed left-0 right-0 top-0 z-50">
-      <div className="container-custom flex items-center justify-between p-1 bg-slate-600">
+    <nav
+      ref={navRef}
+      className="bg-slate-600 fixed top-0 left-0 right-0 z-50 text-white"
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 lg:py-2">
         {/* Logo */}
-        <Link to="/">
-          {/* <img className="w-[40px] rounded-xl" src={logo} alt="logo" /> */}
-          <h2 className="font-bold">Chronolite</h2>
+        <Link to="/" className="text-2xl font-bold px-10">
+          Chronolite
         </Link>
 
-        {/* Hamburger Icon for Mobile */}
+        {/* Hamburger (Mobile only) */}
         <div className="lg:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
-            aria-label="Toggle menu"
+            aria-label="Toggle Menu"
+            className="focus:outline-none"
           >
             {isMenuOpen ? (
               <svg
@@ -66,7 +64,6 @@ function NavBar() {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   strokeLinecap="round"
@@ -81,7 +78,6 @@ function NavBar() {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   strokeLinecap="round"
@@ -94,43 +90,13 @@ function NavBar() {
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <ul
-          className={`transition-transform transform bg-slate-600 ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } lg:translate-x-0 lg:flex lg:items-center lg:space-x-6 fixed top-0 right-0 bottom-0 bg-slate-600 -z-30 lg:bg-transparent w-full lg:w-auto lg:relative p-4 lg:p-0`}
-        >
-          <div className="lg:hidden flex justify-end">
-            <button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none"
-              aria-label="Close menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+        {/* Desktop Links */}
+        <ul className="hidden lg:flex space-x-8  px-10">
           {links.map((link, index) => (
-            <li
-              key={index}
-              className="mt-8 lg:mt-0 text-center lg:flex-grow bg-slate-600 z-50 "
-            >
+            <li key={index}>
               <Link
-                className="block py-2 px-4 text-white hover:text-blue-300 text-xl justify-center items-center "
                 to={link.href}
-                onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                className="text-white hover:text-blue-300 transition"
               >
                 {link.text}
               </Link>
@@ -138,6 +104,22 @@ function NavBar() {
           ))}
         </ul>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden bg-slate-700 px-4 pt-4 pb-6 space-y-4">
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              to={link.href}
+              className="block text-white text-lg hover:text-blue-300"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              {link.text}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
