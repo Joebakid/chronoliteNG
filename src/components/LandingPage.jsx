@@ -150,7 +150,7 @@ function LandingPage() {
         {/* New Collection Section */}
         <h3 className="text-xl mt-52 uppercase">New Collection</h3>
         <div className="br"></div>
-        <div className="flex flex-col md:flex-row mt-0 gap-5 items-center justify-center sm:flex-col bg-white pt-5 pb-5 text-black rounded">
+        <div className="flex flex-col md:flex-row mt-0 gap-5 items-center justify-center sm:flex-col   pt-5 pb-5 text-black rounded">
           <CurrentCollection
             src="https://img.kwcdn.com/product/fancy/8f038be5-7f62-437b-a8f5-ebaeb414776e.jpg?imageView2/2/w/800/q/70/format/webp"
             alt="INCASEDA Chronograph Multifunctional Quartz Watch"

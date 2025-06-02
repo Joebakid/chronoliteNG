@@ -5,6 +5,16 @@
     "price": "22500"
   },
   {
+    "name": "Iron Bag, gold and black",
+    "img": "https://ik.imagekit.io/Cartel/bag/iron%20bag%20(2).jpg?updatedAt=1748853510847",
+    "price": "22500"
+  },
+  {
+    "name": "Iron rough bag. also for personal defence",
+    "img": "https://ik.imagekit.io/Cartel/bag/iron%20bag%20(1).jpg?updatedAt=1748853510923",
+    "price": "22500"
+  },
+  {
     "name": "Woven Pattern Handbag For Women, Stylish Mini Crossbody Bag, Simple Ruched Hobo Bag & Purse",
     "img": "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/d2821a4bd2b3f77cf6451ae8e914c859.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "22500"
@@ -49,31 +59,47 @@
     "img": "https://img.kwcdn.com/product/fancy/1d476191-e783-404e-be69-19178246361e.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "10000"
   },
-  {"name": "1pc Corduroy Shoulder Tote Bag for Women, Solid Color, Large Capacity, Casual Artsy Design, Buckle Closure, Polyester Lined, Ideal for Travel and Gifting ",
+  {
+    "name": "1pc Corduroy Shoulder Tote Bag for Women, Solid Color, Large Capacity, Casual Artsy Design, Buckle Closure, Polyester Lined, Ideal for Travel and Gifting ",
     "img": " https://img.kwcdn.com/product/fancy/30c262f1-dc82-4a84-8440-a2529d45c7bb.jpg?imageView2/2/w/800/q/70/format/webp",
-    "price": "16000 " },
-  {"name": " 1pc Women'S Casual Faux Leather Tote Bag with Mini Deer Charm, Solid Color, Lightweight, Large Capacity, Simple Design, Daily Shoulder Bag with Fixed Straps and Magnetic Closure, Polyester Lined",
+    "price": "16000 "
+  },
+  {
+    "name": " 1pc Women'S Casual Faux Leather Tote Bag with Mini Deer Charm, Solid Color, Lightweight, Large Capacity, Simple Design, Daily Shoulder Bag with Fixed Straps and Magnetic Closure, Polyester Lined",
     "img": " https://img.kwcdn.com/product/fancy/f8a62209-608c-4e44-ae1f-2bca380ce303.jpg?imageView2/2/w/800/q/70/format/webp",
-    "price": "15000 " },
-  {"name": "[Durable Build] Stylish Beige Butterfly Tote Bag with Motivational Quote - Large Capacity, Lightweight, Durable & Fashionable for Travel, Daily Commute, Beach, or Casual Outings, Casual Tote | Butterfly Graphic Tote | Durable Material, Butterfly Purse ",
+    "price": "15000 "
+  },
+  {
+    "name": "[Durable Build] Stylish Beige Butterfly Tote Bag with Motivational Quote - Large Capacity, Lightweight, Durable & Fashionable for Travel, Daily Commute, Beach, or Casual Outings, Casual Tote | Butterfly Graphic Tote | Durable Material, Butterfly Purse ",
     "img": " https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/0dcb43f7081bb3a19a1d06d367a97396.jpg?imageView2/2/w/800/q/70/format/webp",
-    "price": "14000 " },
-  {"name": "Floral Embroidery Tote Bag, Fashion Zipper Shoulder Bag, Women's Large Capacity Handbag For Going Out ",
+    "price": "14000 "
+  },
+  {
+    "name": "Floral Embroidery Tote Bag, Fashion Zipper Shoulder Bag, Women's Large Capacity Handbag For Going Out ",
     "img": "https://img.kwcdn.com/product/open/2024-01-22/1705928043672-f6d87d973cbb49a5b0325dd75ec40a65-goods.jpeg?imageView2/2/w/800/q/70/format/webp ",
-    "price": "18000 " },
-  {"name": "Chic Black Nylon Crossbody Bag for Women - Casual, Lightweight with Adjustable Strap, Zip Closure ",
+    "price": "18000 "
+  },
+  {
+    "name": "Chic Black Nylon Crossbody Bag for Women - Casual, Lightweight with Adjustable Strap, Zip Closure ",
     "img": "https://img.kwcdn.com/product/fancy/00e1dbf0-dcd9-4219-a100-80c0329b5a73.jpg?imageView2/2/w/800/q/70/format/webp ",
-    "price": "12000 " },
-  {"name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
+    "price": "12000 "
+  },
+  {
+    "name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
     "img": "https://img.kwcdn.com/product/fancy/0f6cb052-dce6-4d58-90a7-dcdb81ad3831.jpg?imageView2/2/w/800/q/70/format/webp ",
-    "price": "17000 " },
-  {"name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
+    "price": "17000 "
+  },
+  {
+    "name": "Large Capacity Durable Nylon Crossbody Bag with Adjustable Strap, Zipper Closure - Lightweight, Foldable Design in Beige/Coffee//Black - Ideal for Daily Use ",
     "img": "https://img.kwcdn.com/product/fancy/618797ab-bbab-4e31-a324-b58208fc83a7.jpg?imageView2/2/w/800/q/70/format/webp ",
-    "price": "17000 " },
-  {"name": " Chic Women's Plush Crossbody Bag - Faux Fur, Adjustable Strap, Zip Closure | Versatile & Stylish for Fall/Winter | Available in Khaki, Light Grey, Dark Khaki, Cream, Pink",
+    "price": "17000 "
+  },
+  {
+    "name": " Chic Women's Plush Crossbody Bag - Faux Fur, Adjustable Strap, Zip Closure | Versatile & Stylish for Fall/Winter | Available in Khaki, Light Grey, Dark Khaki, Cream, Pink",
     "img": "https://img.kwcdn.com/product/fancy/753ff73e-f8fd-4d7f-8247-7bb64dcc5ff7.jpg?imageView2/2/w/800/q/70/format/webp ",
-    "price": "16000 " },
-   
+    "price": "16000 "
+  },
+
   {
     "name": "Simple And Stylish Shoulder Bag with Adjustable Strap, Stitched Embroidery, Foldable And Spacious",
     "img": "https://img.kwcdn.com/product/open/2024-05-27/1716771622512-215c0c7d78314bb38c50322ea17116de-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
@@ -144,7 +170,7 @@
     "img": "https://img.kwcdn.com/product/fancy/982ed10d-2811-4ff0-9896-4c38a248e827.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "8000"
   },
- 
+
   {
     "name": "Minimalist Polka Dot Watch - Sleek Japanese-Inspired Design with Mesh & Stainless Steel Band, Quartz Movement, Non-Rechargeable Battery - Perfect for Students & Fashion Enthusiasts",
     "img": "https://img.kwcdn.com/product/fancy/f42219ea-e4d1-44a6-93f8-03b7409a2ef0.jpg?imageView2/2/w/800/q/70/format/webp",
@@ -160,7 +186,7 @@
     "img": "https://img.kwcdn.com/product/open/4c447f12dfa64858b339da7e5333adb7-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
     "price": "8800"
   },
- 
+
   {
     "name": "1pc Women'S Fashion Top Handle Bag, Synthetic Material, Solid Color, Zipper Closure, Edge Painted, Unlined Shoulder Bag for Autumn and Winter",
     "img": "https://img.kwcdn.com/product/fancy/a2546324-970f-4360-899e-d66f2b93f726.jpg?imageView2/2/w/800/q/70/format/webp",
@@ -181,6 +207,4 @@
     "img": "https://img.kwcdn.com/product/open/c91c0cf1bb2a4b0c9b90c2a78e8691c7-goods.jpeg?imageView2/2/w/800/q/70/format/webp",
     "price": "9200"
   }
- 
-  
 ]
