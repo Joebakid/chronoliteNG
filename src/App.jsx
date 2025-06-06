@@ -10,6 +10,7 @@ import PlainTee from "./components/PlainTee";
 import Cap from "./components/Cap";
 import ScrollToTop from "./components/ScrollToTop";
 import LandingPage from "./components/LandingPage";
+import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
 
 function Btn({ text, btnClassName, href }) {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
             <Route path="/review" element={<Review Btn={Btn} />} />
             <Route path="/cap" element={<Cap Btn={Btn} />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
 

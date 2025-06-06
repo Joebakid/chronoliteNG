@@ -72,17 +72,22 @@ Address: ${formData.address}`
         {paginatedItems.map((item, index) => (
           <div
             key={item.id || index}
-            className="border p-2 flex flex-col gap-4 rounded-lg card-custom text-center"
+            className="border p-2 flex flex-col rounded-lg card-custom text-center h-full min-h-[350px]"
           >
-            <ImageWithLoader src={item.img} alt={item.name} />
-            <NameDisplay name={item.name} />
-            <p>{formatter.format(item.price)}</p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => handleOpenForm(item)}
-            >
-              Order Now
-            </button>
+            <div className="py-2 flex-grow">
+              <ImageWithLoader src={item.img} alt={item.name} />
+              <NameDisplay name={item.name} />
+              <p>{formatter.format(item.price)}</p>
+            </div>
+
+            <div className="mt-auto">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+                onClick={() => handleOpenForm(item)}
+              >
+                Order Now
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -92,27 +97,31 @@ Address: ${formData.address}`
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
-            setCurrentPage((prev) => {
-              const newPage = Math.max(prev - 1, 1);
+            if (currentPage > 1) {
+              setCurrentPage(currentPage - 1);
+            }
+            setTimeout(() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              return newPage;
-            });
+            }, 50);
           }}
           disabled={currentPage === 1}
         >
           Previous
         </button>
+
         <span className="px-4 py-2">
           Page {currentPage} of {totalPages}
         </span>
+
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
-            setCurrentPage((prev) => {
-              const newPage = Math.min(prev + 1, totalPages);
+            if (currentPage < totalPages) {
+              setCurrentPage(currentPage + 1);
+            }
+            setTimeout(() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              return newPage;
-            });
+            }, 50);
           }}
           disabled={currentPage === totalPages}
         >
