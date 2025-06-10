@@ -1,5 +1,8 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
+
 
 const WatchGrid = ({ items }) => {
   const whatsappNumber = "2349037291405";
@@ -18,8 +21,17 @@ const WatchGrid = ({ items }) => {
     address: "",
   });
 
+  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+
+ 
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -30,7 +42,7 @@ const WatchGrid = ({ items }) => {
     return () => window.removeEventListener("resize", updateItemsPerPage);
   }, []);
 
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  // const totalPages = Math.ceil(items.length / itemsPerPage);
 
   const handleOpenForm = (item) => {
     setSelectedItem(item);
@@ -60,14 +72,42 @@ Address: ${formData.address}`
 
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
+// 
 
-  const paginatedItems = items.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+// 
+const filteredItems = items.filter((item) =>
+  item.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+const paginatedItems = filteredItems.slice(
+  (currentPage - 1) * itemsPerPage,
+  currentPage * itemsPerPage
+);
+
 
   return (
     <div className="container-custom mt-40">
+
+      {/*SEARCH BAR  */}
+      <div className="mb-6 flex justify-center">
+  <input
+    type="text"
+    placeholder="Search for a watch..."
+    className="border p-2 w-full max-w-md rounded text-black outline-none"
+    value={searchTerm}
+    onChange={(e) => {
+      setSearchTerm(e.target.value);
+      setCurrentPage(1); // Reset to first page on search
+    }}
+  />
+</div>
+
+
+      {/*  */}
+
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {paginatedItems.map((item, index) => (
           <div
