@@ -31,7 +31,7 @@ function App() {
         {/* Main Content */}
         <main className="flex-1 flex items-center justify-center">
           <Routes>
-            <Route path="/" element={<LandingPage />} />{" "}
+            <Route index path="/" element={<LandingPage />} />{" "}
             {/* 👈 Landing page only */}
             <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
             <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
