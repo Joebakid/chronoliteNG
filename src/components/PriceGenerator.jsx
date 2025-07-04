@@ -29,13 +29,12 @@ const PriceGenerator = () => {
 
       ctx.drawImage(img, 0, 0);
 
-      // Dynamic sizing based on image width
-      const fontSize = Math.floor(img.width * 0.025); // 2.5% of width
-      const padding = Math.floor(img.width * 0.01); // 1% padding
-      const boxWidth = Math.floor(img.width * 0.35);
+      const fontSize = Math.floor(img.width * 0.04); // Bigger font (4% of width)
+      const padding = Math.floor(img.width * 0.02); // 2% padding
+      const boxWidth = Math.floor(img.width * 0.42);
       const boxHeight = fontSize * 2.5;
 
-      // Background box
+      // Draw background box
       ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
       ctx.fillRect(
         img.width - boxWidth - padding,
@@ -44,9 +43,9 @@ const PriceGenerator = () => {
         boxHeight
       );
 
-      // Text
+      // Use custom font (Poppins must be loaded in HTML)
       ctx.fillStyle = "white";
-      ctx.font = `bold ${fontSize}px Arial`;
+      ctx.font = `600 ${fontSize}px 'Poppins', sans-serif`;
       ctx.textAlign = "right";
 
       ctx.fillText(
@@ -57,10 +56,10 @@ const PriceGenerator = () => {
       ctx.fillText(
         `₦${Number(price).toLocaleString()}`,
         img.width - padding * 2,
-        padding + fontSize * 2 + 4
+        padding + fontSize * 2 + 8
       );
 
-      // Download
+      // Download logic
       const link = document.createElement("a");
       link.download = `${productName || "price-tag"}.${format}`;
       link.href = canvas.toDataURL(`image/${format}`);
@@ -69,10 +68,10 @@ const PriceGenerator = () => {
   };
 
   return (
-    <div className="  bg-black text-white py-10 px-4 flex flex-col items-center">
+    <div className="bg-black mt-4 text-white py-10 px-4 flex flex-col items-center min-h-screen">
       <h1 className="text-2xl font-bold mb-6">Price Tag Generator</h1>
 
-      {/* Input Form */}
+      {/* Form */}
       <div className="bg-black border border-gray-700 p-6 rounded shadow-md w-full max-w-md mb-10">
         <div className="mb-4">
           <label className="block mb-1 font-medium">Upload Product Image</label>
@@ -107,7 +106,7 @@ const PriceGenerator = () => {
         </div>
       </div>
 
-      {/* Preview and Download */}
+      {/* Preview */}
       {image && (
         <div className="w-full max-w-md flex flex-col items-center">
           <div className="relative w-full border border-gray-700 rounded shadow-lg overflow-hidden mb-4">

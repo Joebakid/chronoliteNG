@@ -133,10 +133,10 @@ Address: ${formData.address}`
           onClick={() => {
             if (currentPage > 1) {
               setCurrentPage(currentPage - 1);
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }, 50);
             }
-            setTimeout(() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }, 50);
           }}
           disabled={currentPage === 1}
         >
@@ -152,10 +152,10 @@ Address: ${formData.address}`
           onClick={() => {
             if (currentPage < totalPages) {
               setCurrentPage(currentPage + 1);
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }, 50);
             }
-            setTimeout(() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }, 50);
           }}
           disabled={currentPage === totalPages}
         >
@@ -244,7 +244,7 @@ const ImageWithLoader = React.memo(({ src, alt, onClick }) => {
       className="relative w-full h-32 md:h-40 flex items-center justify-center cursor-pointer"
       onClick={onClick}
     >
-      {isLoading && <div className="loader"></div>}
+      {isLoading && <div className="loader" />}
       <img
         className={`w-full h-full rounded-md object-cover ${
           isLoading ? "opacity-0" : "opacity-100"
