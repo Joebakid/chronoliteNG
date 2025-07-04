@@ -16,6 +16,7 @@ function NavBar() {
     { text: "Plain Tee", href: "/plaintee" },
     { text: "Cap", href: "/cap" },
     { text: "Review", href: "/review" },
+    {text:'Generate',href:'/price-generator'}
   ];
 
   useEffect(() => {

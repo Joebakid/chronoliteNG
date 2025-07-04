@@ -12,6 +12,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import LandingPage from "./components/LandingPage";
 import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
+import PriceGenerator from './components/PriceGenerator'
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/review" element={<Review Btn={Btn} />} />
             <Route path="/cap" element={<Cap Btn={Btn} />} />
             <Route path="*" element={<PageNotFound />} />
+            <Route path='/price-generator' element={<PriceGenerator/>}/>
           </Routes>
         </main>
 

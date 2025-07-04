@@ -1,8 +1,6 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
-import { useRef } from "react";
-
 
 const WatchGrid = ({ items }) => {
   const whatsappNumber = "2349037291405";
@@ -21,17 +19,10 @@ const WatchGrid = ({ items }) => {
     address: "",
   });
 
-  
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
-
-
   const [searchTerm, setSearchTerm] = useState("");
-
-
-
- 
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -42,7 +33,13 @@ const WatchGrid = ({ items }) => {
     return () => window.removeEventListener("resize", updateItemsPerPage);
   }, []);
 
-  // const totalPages = Math.ceil(items.length / itemsPerPage);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setEnlargedImage(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleOpenForm = (item) => {
     setSelectedItem(item);
@@ -72,42 +69,35 @@ Address: ${formData.address}`
 
     window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
   };
-// 
 
-// 
-const filteredItems = items.filter((item) =>
-  item.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
-const paginatedItems = filteredItems.slice(
-  (currentPage - 1) * itemsPerPage,
-  currentPage * itemsPerPage
-);
-
+  const paginatedItems = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="container-custom mt-40">
-
-      {/*SEARCH BAR  */}
+      {/* SEARCH BAR */}
       <div className="mb-6 flex justify-center">
-  <input
-    type="text"
-    placeholder="Search for a watch..."
-    className="border p-2 w-full max-w-md rounded text-black outline-none"
-    value={searchTerm}
-    onChange={(e) => {
-      setSearchTerm(e.target.value);
-      setCurrentPage(1); // Reset to first page on search
-    }}
-  />
-</div>
+        <input
+          type="text"
+          placeholder="Search for a watch..."
+          className="border p-2 w-full max-w-md rounded text-black outline-none"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
+        />
+      </div>
 
-
-      {/*  */}
-
-
+      {/* WATCH GRID */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {paginatedItems.map((item, index) => (
           <div
@@ -115,7 +105,11 @@ const paginatedItems = filteredItems.slice(
             className="border p-2 flex flex-col rounded-lg card-custom text-center h-full min-h-[350px]"
           >
             <div className="py-2 flex-grow">
-              <ImageWithLoader src={item.img} alt={item.name} />
+              <ImageWithLoader
+                src={item.img}
+                alt={item.name}
+                onClick={() => setEnlargedImage(item.img)}
+              />
               <NameDisplay name={item.name} />
               <p>{formatter.format(item.price)}</p>
             </div>
@@ -132,7 +126,7 @@ const paginatedItems = filteredItems.slice(
         ))}
       </div>
 
-      {/* Pagination */}
+      {/* PAGINATION */}
       <div className="flex justify-center gap-4 mt-6">
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
@@ -169,9 +163,9 @@ const paginatedItems = filteredItems.slice(
         </button>
       </div>
 
-      {/* WhatsApp Form */}
+      {/* WHATSAPP FORM */}
       {isFormOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-md shadow-md w-96">
             <h2 className="text-lg font-semibold mb-4 text-gray-600">
               Enter Your Details
@@ -223,15 +217,33 @@ const paginatedItems = filteredItems.slice(
           </div>
         </div>
       )}
+
+      {/* IMAGE MODAL */}
+      {enlargedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setEnlargedImage(null)}
+        >
+          <img
+            src={enlargedImage}
+            alt="Enlarged Watch"
+            className="max-w-full max-h-full rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };
 
-// Image Loader Component
-const ImageWithLoader = React.memo(({ src, alt }) => {
+// IMAGE LOADER COMPONENT
+const ImageWithLoader = React.memo(({ src, alt, onClick }) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <div className="relative w-full h-32 md:h-40 flex items-center justify-center">
+    <div
+      className="relative w-full h-32 md:h-40 flex items-center justify-center cursor-pointer"
+      onClick={onClick}
+    >
       {isLoading && <div className="loader"></div>}
       <img
         className={`w-full h-full rounded-md object-cover ${
@@ -245,7 +257,7 @@ const ImageWithLoader = React.memo(({ src, alt }) => {
   );
 });
 
-// Name Display Component
+// NAME DISPLAY COMPONENT
 const NameDisplay = React.memo(({ name }) => {
   const [showFullName, setShowFullName] = useState(false);
   return (
