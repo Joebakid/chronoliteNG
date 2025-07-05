@@ -16,7 +16,8 @@ body {
   font-style: normal;
   font-size: 16px;
   color: #ffffff;
-  background-color: #121212;
+  /* background-color: #121212; */
+  /* background-color: rgb(59 130 246 / 0.5); */
 }
 
 @tailwind base;
@@ -28,15 +29,15 @@ body {
 /* FONT */
 
 .btn {
-  @apply text-red-100 bg-blue-400 p-2   mt-5 rounded-lg  hover:bg-sky-700 hover:ease-in transition ease-out duration-500  cursor-pointer items-center justify-center flex;
+  @apply flex items-center justify-center p-2 mt-5 text-red-100 transition duration-500 ease-out bg-blue-400 rounded-lg cursor-pointer hover:bg-sky-700 hover:ease-in;
 }
 
 .link-nav {
-  @apply hover:ease-in transition ease-out duration-500;
+  @apply transition duration-500 ease-out hover:ease-in;
 }
 
 .transition-custom {
-  @apply hover:ease-in transition ease-out duration-500;
+  @apply transition duration-500 ease-out hover:ease-in;
 }
 
 /* Container */
@@ -55,11 +56,11 @@ body {
 }
 
 .card-custom {
-  @apply cursor-pointer hover:scale-95  transition-transform duration-200;
+  @apply transition-transform duration-200 cursor-pointer hover:scale-95;
 }
 
 .loader {
-  @apply border-4 border-solid border-gray-200 border-t-blue-500 rounded-full w-10 h-10;
+  @apply w-10 h-10 border-4 border-gray-200 border-solid rounded-full border-t-blue-500;
   animation: spin 1s linear infinite;
 }
 
@@ -92,7 +93,7 @@ body {
 }
 
 section {
-  @apply mt-40 flex items-center justify-center flex-col gap-10;
+  @apply flex flex-col items-center justify-center gap-10 mt-40;
 }
 
 .perspective {
