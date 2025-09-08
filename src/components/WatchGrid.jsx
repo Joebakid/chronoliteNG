@@ -87,7 +87,7 @@ Address: ${formData.address}`
       <div className="mb-6 flex justify-center">
         <input
           type="text"
-          placeholder="Search for a watch..."
+          placeholder="Search for an item..."
           className="border p-2 w-full max-w-md rounded text-black outline-none"
           value={searchTerm}
           onChange={(e) => {

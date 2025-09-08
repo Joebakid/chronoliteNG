@@ -16,7 +16,8 @@ function NavBar() {
     { text: "Plain Tee", href: "/plaintee" },
     { text: "Cap", href: "/cap" },
     { text: "Review", href: "/review" },
-    {text:'Generate',href:'/price-generator'}
+    {text:'Generate',href:'/price-generator'},
+    {text:'La Yedi',href:'/Jewelries'}
   ];
 
   useEffect(() => {
@@ -45,6 +46,8 @@ function NavBar() {
     <nav
       ref={navRef}
       className="bg-slate-600 fixed top-0 left-0 right-0 z-50 text-white"
+     
+
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 lg:py-2">
         {/* Logo */}
