@@ -2,30 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/chronolite-logo-2.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Chronolite NG</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap"/>
     <meta name="description" content="Discover premium, affordable timepieces and fashion accessories at Chronolite NG.">
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Chronolite NG - Premium Watches & Accessories">
-    <meta property="og:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags.">
-    <meta property="og:image" content="https://chronolite.com.ng/chronolite-logo-2.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://chronolite.com.ng">
-    <meta property="og:type" content="website">
+    <!-- ============== FAVICON (browser tab icon) ============== -->
+    <!-- Using your requested path -->
+    <link rel="icon" type="image/png" href="./public/chronolite logo 2.png" />
+    <!-- If it ever fails in Vite builds, switch to this root-served path:
+    <link rel="icon" type="image/png" href="/chronolite%20logo%202.png" />
+    -->
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Chronolite NG - Premium Watches & Accessories">
-    <meta name="twitter:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags.">
-    <meta name="twitter:image" content="https://chronolite.com.ng/chronolite-logo-2.png">
+    <!-- ============== SOCIAL SHARE IMAGE (OG/Twitter) ============== -->
+    <!-- Absolute URLs so WhatsApp/X/LinkedIn can fetch the image -->
+    <meta property="og:title" content="Chronolite NG - Premium Watches & Accessories" />
+    <meta property="og:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags." />
+    <meta property="og:image" content="https://chronolite.com.ng/public/chronolite%20logo%202.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://chronolite.com.ng" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Chronolite NG" />
 
-    <!-- Ensure Bots Can Crawl the Page -->
-    <meta name="robots" content="index, follow">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chronolite NG - Premium Watches & Accessories" />
+    <meta name="twitter:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags." />
+    <meta name="twitter:image" content="https://chronolite.com.ng/public/chronolite%20logo%202.png" />
+
+    <!-- Crawling -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QNYB8KDCR"></script>
@@ -33,13 +43,13 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-2QNYB8KDCR');
     </script>
-
   </head>
+
   <body class="text-gray-300 bg-black">
     <div id="root"></div>
+    <!-- Vite/React entry -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
