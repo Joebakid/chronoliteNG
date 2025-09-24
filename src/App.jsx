@@ -14,6 +14,7 @@ import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
 import PriceGenerator from './components/PriceGenerator'
 import Jewelries from './components/jewelries'
+import { Analytics } from "@vercel/analytics/react"
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -26,6 +27,7 @@ function Btn({ text, btnClassName, href }) {
 function App() {
   return (
     <Router>
+      <Analytics/>
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <NavBar />

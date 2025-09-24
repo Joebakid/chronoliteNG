@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/chronolite-logo-2.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chronolite NG</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap"/>
-    <meta name="description" content="Discover premium, affordable timepieces and fashion accessories at Chronolite NG.">
+  <title>Chronolite NG</title>
+  <meta name="description" content="Discover premium, affordable timepieces and fashion accessories at Chronolite NG.">
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Chronolite NG - Premium Watches & Accessories">
-    <meta property="og:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags.">
-    <meta property="og:image" content="https://chronolite.com.ng/chronolite-logo-2.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://chronolite.com.ng">
-    <meta property="og:type" content="website">
+  <!-- Favicon & app icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Chronolite NG - Premium Watches & Accessories">
-    <meta name="twitter:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags.">
-    <meta name="twitter:image" content="https://chronolite.com.ng/chronolite-logo-2.png">
+  <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:title" content="Chronolite NG - Premium Watches & Accessories" />
+  <meta property="og:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags." />
+  <!-- Use an absolute URL that is publicly reachable -->
+  <meta property="og:image" content="https://chronolite.com.ng/chronolite-logo-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Chronolite NG logo" />
+  <meta property="og:url" content="https://chronolite.com.ng" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Chronolite NG" />
 
-    <!-- Ensure Bots Can Crawl the Page -->
-    <meta name="robots" content="index, follow">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chronolite NG - Premium Watches & Accessories" />
+  <meta name="twitter:description" content="Explore stylish and durable timepieces, along with fashion accessories like female bags." />
+  <meta name="twitter:image" content="https://chronolite.com.ng/chronolite-logo-og.png" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QNYB8KDCR"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet" />
 
-      gtag('config', 'G-2QNYB8KDCR');
-    </script>
-
-  </head>
-  <body class="text-gray-300 bg-black">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QNYB8KDCR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2QNYB8KDCR');
+  </script>
+</head>
