@@ -14,7 +14,7 @@ import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
 import PriceGenerator from './components/PriceGenerator'
 import Jewelries from './components/jewelries'
-import { Analytics } from "@vercel/analytics/react"
+// import { Analytics } from "@vercel/analytics/react"
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -49,7 +49,7 @@ function App() {
         </main>
 
         <Footer />
-        <Analytics />
+        
       </div>
     </Router>
   );
