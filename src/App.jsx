@@ -44,7 +44,7 @@ function App() {
             <Route path="/cap" element={<Cap Btn={Btn} />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path='/price-generator' element={<PriceGenerator/>}/>
-            <Route path='/La-Yedi store' element={<Jewelries/>}/>
+            <Route path='/La-Yedi-store' element={<Jewelries/>}/>
           </Routes>
         </main>
 
