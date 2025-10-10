@@ -15,9 +15,10 @@ function NavBar() {
     { text: "Female Bags", href: "/femalebags" },
     { text: "Plain Tee", href: "/plaintee" },
     { text: "Cap", href: "/cap" },
+     {text:'La Yedi',href:'/Jewelries'},
     { text: "Review", href: "/review" },
-    {text:'Generate',href:'/price-generator'},
-    {text:'La Yedi',href:'/Jewelries'}
+   
+   
   ];
 
   useEffect(() => {
