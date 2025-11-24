@@ -136,7 +136,7 @@ const WatchGrid = ({ items = [], Btn = null }) => {
       </div>
 
       {/* PAGINATION */}
-      <div className="flex justify-center gap-4 mt-8">
+      <div className="flex justify-center gap-4 m-5">
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
