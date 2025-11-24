@@ -1,7 +1,7 @@
 // src/components/WatchGrid.jsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 /**
  * WatchGrid
@@ -111,7 +111,6 @@ const WatchGrid = ({ items = [], Btn = null }) => {
             key={item.id ?? index}
             className="border border-gray-700 p-3 flex flex-col rounded-lg card-custom text-center h-full bg-black text-white"
           >
-            {/* media area - aspect-video to force landscape thumbnails like watches page */}
             <div className="flex-grow">
               <MediaWithLoader
                 src={item.img || "/pam/VID-20251119-WA0003.mp4"}
@@ -137,7 +136,7 @@ const WatchGrid = ({ items = [], Btn = null }) => {
       </div>
 
       {/* PAGINATION */}
-      <div className="flex justify-center gap-4 m-8">
+      <div className="flex justify-center gap-4 mt-8">
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
@@ -283,36 +282,56 @@ function buildDriveCandidates(raw) {
 const isVideoUrl = (src = "") => /\.(mp4|mov|webm|ogg|mkv)$/i.test(src);
 
 /**
- * MediaWithLoader component:
- * - direct-render any /pam/ files (hardcoded local assets)
- * - otherwise tries candidates one-by-one (useful for Drive)
- * - thumbnails autoplay muted
+ * MediaWithLoader component (LAZY):
+ * - shows a poster/thumbnail + play button by default
+ * - uses IntersectionObserver to set shouldLoad when the card is visible
+ * - only sets the video `src` when shouldLoad === true (prevents network load)
+ * - images use loading="lazy" to avoid immediate downloads
  *
- * Uses `aspect-video` so all thumbnails are landscape and match the watches page look.
- * If you don't have tailwind's aspect-ratio plugin, the class still works if you've defined it,
- * otherwise replace with the small CSS helper:
- *
- * .aspect-video { position: relative; padding-top: 56.25%; }
- * .aspect-video > * { position: absolute; top: 0; left: 0; width:100%; height:100%; }
+ * DEV poster fallback path is your uploaded watches screenshot; tooling will transform it.
  */
 const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [failed, setFailed] = useState(false);
   const [candidateIndex, setCandidateIndex] = useState(0);
+  const [shouldLoad, setShouldLoad] = useState(false); // only true when in viewport or clicked
+  const containerRef = useRef(null);
 
-  // Use the watches screenshot local path as the debug fallback URL (tooling will transform it).
-  const DEV_CONTAINER_FILE = "/mnt/data/0d99153e-df37-46a8-b897-9adcc8d61536.png";
+  // fallback poster image (local path from session). Your tooling will convert to a URL.
+  const DEV_POSTER = "/mnt/data/0d99153e-df37-46a8-b897-9adcc8d61536.png";
 
-  // Build candidates for remote Drive links (kept for compatibility)
   const candidates = React.useMemo(() => buildDriveCandidates(src), [src]);
   const currentSrc = candidates[candidateIndex] || src;
-  const video = isVideoUrl(currentSrc);
+  const isVideo = isVideoUrl(currentSrc);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(false);
     setFailed(false);
     setCandidateIndex(0);
+    setShouldLoad(false);
   }, [src]);
+
+  // IntersectionObserver -> set shouldLoad when the media enters viewport
+  useEffect(() => {
+    if (!containerRef.current) return;
+    // if already shouldLoad, do nothing
+    if (shouldLoad) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            io.disconnect();
+          }
+        });
+      },
+      { rootMargin: "200px" } // preload a little before it's strictly visible
+    );
+
+    io.observe(containerRef.current);
+    return () => io.disconnect();
+  }, [containerRef, shouldLoad]);
 
   const tryNextCandidate = () => {
     if (candidateIndex < candidates.length - 1) {
@@ -333,104 +352,117 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
     console.error("Media error for src:", currentSrc, ev);
   };
 
-  // DIRECT PAM SHORTCUT: render anything under /pam/ directly (landscape thumbnail)
-  if (typeof src === "string" && src.startsWith("/pam/")) {
-    const isVid = isVideoUrl(src);
+  // If it's a /pam/ path we still lazy load, but we can use a poster thumbnail
+  const posterFor = (s) => {
+    // if the item provides an explicit poster (like item.poster), you could use it
+    // otherwise use DEV_POSTER as lightweight fallback
+    return DEV_POSTER;
+  };
+
+  // If no src provided, show debug poster
+  if (!src) {
     return (
       <div
+        ref={containerRef}
         className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
-        onClick={onClick}
+        onClick={() => {
+          setShouldLoad(true);
+          if (onClick) onClick();
+        }}
       >
-        {isVid ? (
-          <video
-            src={src}
-            className="w-full h-full rounded-md object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls
-            preload="metadata"
-          />
+        <img src={posterFor(src)} alt="debug-poster" className="w-full h-full object-cover rounded-md" />
+      </div>
+    );
+  }
+
+  // For videos: show poster + play button until shouldLoad true
+  if (isVideo) {
+    return (
+      <div
+        ref={containerRef}
+        className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
+      >
+        {!shouldLoad ? (
+          <>
+            <img
+              src={posterFor(src)}
+              alt={alt}
+              className="w-full h-full object-cover rounded-md"
+              loading="lazy"
+            />
+            <button
+              aria-label="Load video"
+              onClick={() => {
+                setShouldLoad(true);
+              }}
+              className="absolute z-10 p-3 rounded-full bg-black bg-opacity-50 hover:bg-opacity-60"
+            >
+              {/* simple play triangle */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+                <path d="M3 22v-20l18 10z" />
+              </svg>
+            </button>
+          </>
         ) : (
-          <img src={src} alt={alt} className="w-full h-full rounded-md object-cover" />
+          <>
+            {/* only set src when shouldLoad is true to avoid network load */}
+            <video
+              src={currentSrc}
+              className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              preload="none"
+              crossOrigin="anonymous"
+              onLoadedData={() => setIsLoading(false)}
+              onCanPlay={() => setIsLoading(false)}
+              onError={handleError}
+              onClick={() => {
+                if (onClick) onClick();
+              }}
+            />
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="loader" />
+              </div>
+            )}
+          </>
         )}
       </div>
     );
   }
 
-  // FALLBACK: If no src or it's falsy, show the dev container image path as debug fallback.
-  if (!src) {
-    return (
-      <div
-        className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
-        onClick={onClick}
-      >
-        <img
-          src={DEV_CONTAINER_FILE}
-          alt="debug-fallback"
-          className="w-full h-full rounded-md object-cover"
-        />
-      </div>
-    );
-  }
-
-  // OTHERWISE use the candidate logic (Drive-friendly)
+  // Images: lazy-load immediately with loading="lazy"
   return (
     <div
+      ref={containerRef}
       className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
       onClick={onClick}
     >
-      {isLoading && !failed && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="loader" />
-        </div>
-      )}
-
-      {failed ? (
-        <div className="p-4 text-center">
-          <div className="mb-2 text-sm text-gray-500">Could not load media</div>
-          <a href={src} target="_blank" rel="noreferrer" className="text-blue-500 underline text-sm">
-            Open original
-          </a>
-        </div>
-      ) : video ? (
-        <video
-          src={currentSrc}
-          className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          crossOrigin="anonymous"
-          onLoadedData={() => setIsLoading(false)}
-          onCanPlay={() => setIsLoading(false)}
-          onError={handleError}
-        />
-      ) : (
-        <img
-          src={currentSrc}
-          alt={alt}
-          className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
-          onLoad={() => setIsLoading(false)}
-          onError={handleError}
-        />
-      )}
+      <img
+        src={currentSrc}
+        alt={alt}
+        className="w-full h-full object-cover rounded-md"
+        loading="lazy"
+        onError={handleError}
+      />
     </div>
   );
 });
 
 /**
  * EnlargedMedia - modal content (controls available so user can unmute)
+ * We still lazy-resolve Drive candidates for the enlarged modal, but that's fine
+ * because user intentionally opened the modal.
  */
 const EnlargedMedia = ({ src }) => {
   const candidates = buildDriveCandidates(src);
-  // prefer the download variant first
   const primary = candidates[0];
-  const isVideo = isVideoUrl(primary);
+  const isVid = isVideoUrl(primary);
 
-  if (isVideo) {
+  if (isVid) {
     return (
       <video
         src={primary}
