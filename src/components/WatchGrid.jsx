@@ -88,7 +88,8 @@ const WatchGrid = ({ items = [], Btn = null }) => {
   );
 
   return (
-    <div className="container-custom mt-40 px-4">
+    // wider centered container to match the watches page layout
+    <div className="mx-auto max-w-5xl mt-24 px-4">
       {/* SEARCH BAR */}
       <div className="mb-6 flex justify-center">
         <input
@@ -104,24 +105,26 @@ const WatchGrid = ({ items = [], Btn = null }) => {
       </div>
 
       {/* WATCH GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {paginatedItems.map((item, index) => (
           <div
             key={item.id ?? index}
-        className="border border-gray-700 p-2 flex flex-col rounded-lg card-custom text-center h-full min-h-[350px] bg-black text-white"
-
+            className="border border-gray-700 p-3 flex flex-col rounded-lg card-custom text-center h-full bg-black text-white"
           >
-            <div className="py-2 flex-grow">
+            {/* media area - aspect-video to force landscape thumbnails like watches page */}
+            <div className="flex-grow">
               <MediaWithLoader
-                src={item.img}
+                src={item.img || "/pam/VID-20251119-WA0003.mp4"}
                 alt={item.name}
-                onClick={() => setEnlargedMedia(item.img)}
+                onClick={() => setEnlargedMedia(item.img || "/pam/VID-20251119-WA0003.mp4")}
               />
-              <NameDisplay name={item.name} />
-              <p className="mt-2 font-semibold">{formatter.format(item.price ?? 0)}</p>
+              <div className="mt-3">
+                <NameDisplay name={item.name} />
+                <p className="mt-2 font-semibold">{formatter.format(item.price ?? 0)}</p>
+              </div>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-4">
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded w-full"
                 onClick={() => handleOpenForm(item)}
@@ -134,7 +137,7 @@ const WatchGrid = ({ items = [], Btn = null }) => {
       </div>
 
       {/* PAGINATION */}
-      <div className="flex justify-center gap-4 mt-6">
+      <div className="flex justify-center gap-4 m-8">
         <button
           className="px-4 py-2 border rounded disabled:opacity-50"
           onClick={() => {
@@ -281,13 +284,26 @@ const isVideoUrl = (src = "") => /\.(mp4|mov|webm|ogg|mkv)$/i.test(src);
 
 /**
  * MediaWithLoader component:
- * - tries candidates one-by-one (useful for Drive)
+ * - direct-render any /pam/ files (hardcoded local assets)
+ * - otherwise tries candidates one-by-one (useful for Drive)
  * - thumbnails autoplay muted
+ *
+ * Uses `aspect-video` so all thumbnails are landscape and match the watches page look.
+ * If you don't have tailwind's aspect-ratio plugin, the class still works if you've defined it,
+ * otherwise replace with the small CSS helper:
+ *
+ * .aspect-video { position: relative; padding-top: 56.25%; }
+ * .aspect-video > * { position: absolute; top: 0; left: 0; width:100%; height:100%; }
  */
 const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [candidateIndex, setCandidateIndex] = useState(0);
+
+  // Use the watches screenshot local path as the debug fallback URL (tooling will transform it).
+  const DEV_CONTAINER_FILE = "/mnt/data/0d99153e-df37-46a8-b897-9adcc8d61536.png";
+
+  // Build candidates for remote Drive links (kept for compatibility)
   const candidates = React.useMemo(() => buildDriveCandidates(src), [src]);
   const currentSrc = candidates[candidateIndex] || src;
   const video = isVideoUrl(currentSrc);
@@ -313,12 +329,56 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
       setFailed(true);
       setIsLoading(false);
     }
+    // eslint-disable-next-line no-console
     console.error("Media error for src:", currentSrc, ev);
   };
 
+  // DIRECT PAM SHORTCUT: render anything under /pam/ directly (landscape thumbnail)
+  if (typeof src === "string" && src.startsWith("/pam/")) {
+    const isVid = isVideoUrl(src);
+    return (
+      <div
+        className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
+        onClick={onClick}
+      >
+        {isVid ? (
+          <video
+            src={src}
+            className="w-full h-full rounded-md object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            preload="metadata"
+          />
+        ) : (
+          <img src={src} alt={alt} className="w-full h-full rounded-md object-cover" />
+        )}
+      </div>
+    );
+  }
+
+  // FALLBACK: If no src or it's falsy, show the dev container image path as debug fallback.
+  if (!src) {
+    return (
+      <div
+        className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
+        onClick={onClick}
+      >
+        <img
+          src={DEV_CONTAINER_FILE}
+          alt="debug-fallback"
+          className="w-full h-full rounded-md object-cover"
+        />
+      </div>
+    );
+  }
+
+  // OTHERWISE use the candidate logic (Drive-friendly)
   return (
     <div
-      className="relative w-full h-32 md:h-40 flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
+      className="relative w-full aspect-video flex items-center justify-center cursor-pointer overflow-hidden rounded-md bg-gray-50"
       onClick={onClick}
     >
       {isLoading && !failed && (
@@ -330,21 +390,14 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
       {failed ? (
         <div className="p-4 text-center">
           <div className="mb-2 text-sm text-gray-500">Could not load media</div>
-          <a
-            href={src}
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-500 underline text-sm"
-          >
+          <a href={src} target="_blank" rel="noreferrer" className="text-blue-500 underline text-sm">
             Open original
           </a>
         </div>
       ) : video ? (
         <video
           src={currentSrc}
-          className={`w-full h-full rounded-md object-cover transition-opacity ${
-            isLoading ? "opacity-0" : "opacity-100"
-          }`}
+          className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
           autoPlay
           loop
           muted
@@ -359,9 +412,7 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
         <img
           src={currentSrc}
           alt={alt}
-          className={`w-full h-full rounded-md object-cover transition-opacity ${
-            isLoading ? "opacity-0" : "opacity-100"
-          }`}
+          className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
           onLoad={() => setIsLoading(false)}
           onError={handleError}
         />

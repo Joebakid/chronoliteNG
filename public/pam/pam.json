@@ -1,112 +1,24 @@
-﻿[
-  {
-    "name": "VID-20251119-WA0037.mp4",
-    "img": "https://drive.google.com/file/d/1d_fOsS4iGPn3HamxeK_E6Wb8NcqM5tHA/view?usp=drivesdk",
-    "price": 2000
-  },
-  {
-    "name": "VID-20251119-WA0036.mp4",
-    "img": "https://drive.google.com/file/d/1bEXJsAZmpxxa5pzwENcPexbzR7Yfdlw7/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0035.mp4",
-    "img": "https://drive.google.com/file/d/1wQnz4Y56iupcg7wM9BaE-Zi6WKZijLSq/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0032.mp4",
-    "img": "https://drive.google.com/file/d/185D7LQCY75qMMr3g_VuXyFKjuSGhvNz3/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0034.mp4",
-    "img": "https://drive.google.com/file/d/1d2-w1fm0CpMOWQgHOtAh57uhuqsu0okc/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0033.mp4",
-    "img": "https://drive.google.com/file/d/1tYiD8dylQGnzekWbrjpSYbUeo0yZ4E4V/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0031.mp4",
-    "img": "https://drive.google.com/file/d/1eA5qSa0xJoS3tvcbXMhhL0ls789WTr9W/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0030.mp4",
-    "img": "https://drive.google.com/file/d/147Fho8_EUqA-xahmSvVxpQ6q1HkMx47P/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0027.mp4",
-    "img": "https://drive.google.com/file/d/175q9wAoqIAdShKzZjblIbNYpdYrNRGBE/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0024.mp4",
-    "img": "https://drive.google.com/file/d/1CGEy9hS08tFaw4stT4C4gB7DouJ_GkoG/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0025.mp4",
-    "img": "https://drive.google.com/file/d/1VPQxcB-Be_Ykyfwm1xugUCvfZxhoHqwx/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0029.mp4",
-    "img": "https://drive.google.com/file/d/1oPyOsAyC6lfPp5R9LJRa1JjwiSOApazC/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0026.mp4",
-    "img": "https://drive.google.com/file/d/1od-XB2Rr2sS--YWfcddx4_rZq8bzMa1g/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0028.mp4",
-    "img": "https://drive.google.com/file/d/1qP6ih4KT1OAZBCSyAO3QyeEQY_-UjZTW/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0023.mp4",
-    "img": "https://drive.google.com/file/d/15NojLt7-uNOWlfJ4aNh21o0pe_Tqfhff/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0021.mp4",
-    "img": "https://drive.google.com/file/d/1CyO6Givffj_tdHTAzYrCm0-AtTaahwrr/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0020.mp4",
-    "img": "https://drive.google.com/file/d/1d5WZsTDrej85B_3tBDq0g4zTZ_WWw-Mf/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0022.mp4",
-    "img": "https://drive.google.com/file/d/1oFwMtSf6MiPTzdjrCtT8LdLNtGQR8pwi/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0007.mp4",
-    "img": "https://drive.google.com/file/d/1Q8U1X0er6ox6v_bQV-pQ_PNp0oAKcXGg/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0005.mp4",
-    "img": "https://drive.google.com/file/d/1j0W7SBY8JFobsqDlk4F5YRwCcah-uKFX/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0004.mp4",
-    "img": "https://drive.google.com/file/d/1eBXn81f3qw05GtQGGtn1dM-pmdkBT6eY/view?usp=drivesdk",
-    "price": 0
-  },
-  {
-    "name": "VID-20251119-WA0003.mp4",
-    "img": "https://drive.google.com/file/d/1aTol6WbLQFWhR5gTeRxR3bWkGlO3YyW2/view?usp=drivesdk",
-    "price": 0
-  }
+[
+  { "id": 1,  "name": "Pam 1",  "img": "/pam/pam (1).mp4",  "price": 20000 },
+  { "id": 2,  "name": "Pam 2",  "img": "/pam/pam (2).mp4",  "price": 20000 },
+  { "id": 3,  "name": "Pam 3",  "img": "/pam/pam (3).mp4",  "price": 20000 },
+  { "id": 4,  "name": "Pam 4",  "img": "/pam/pam (4).mp4",  "price": 20000 },
+  { "id": 5,  "name": "Pam 5",  "img": "/pam/pam (5).mp4",  "price": 20000 },
+  { "id": 6,  "name": "Pam 6",  "img": "/pam/pam (6).mp4",  "price": 20000 },
+  { "id": 7,  "name": "Pam 7",  "img": "/pam/pam (7).mp4",  "price": 20000 },
+  { "id": 8,  "name": "Pam 8",  "img": "/pam/pam (8).mp4",  "price": 20000 },
+  { "id": 9,  "name": "Pam 9",  "img": "/pam/pam (9).mp4",  "price": 20000 },
+  { "id": 10, "name": "Pam 10", "img": "/pam/pam (10).mp4", "price": 20000 },
+  { "id": 11, "name": "Pam 11", "img": "/pam/pam (11).mp4", "price": 20000 },
+  { "id": 12, "name": "Pam 12", "img": "/pam/pam (12).mp4", "price": 20000 },
+  { "id": 13, "name": "Pam 13", "img": "/pam/pam (13).mp4", "price": 20000 },
+  { "id": 14, "name": "Pam 14", "img": "/pam/pam (14).mp4", "price": 20000 },
+  { "id": 15, "name": "Pam 15", "img": "/pam/pam (15).mp4", "price": 20000 },
+  { "id": 16, "name": "Pam 16", "img": "/pam/pam (16).mp4", "price": 20000 },
+  { "id": 17, "name": "Pam 17", "img": "/pam/pam (17).mp4", "price": 20000 },
+  { "id": 18, "name": "Pam 18", "img": "/pam/pam (18).mp4", "price": 20000 },
+  { "id": 19, "name": "Pam 19", "img": "/pam/pam (19).mp4", "price": 20000 },
+  { "id": 20, "name": "Pam 20", "img": "/pam/pam (20).mp4", "price": 20000 },
+  { "id": 21, "name": "Pam 21", "img": "/pam/pam (21).mp4", "price": 20000 },
+  { "id": 22, "name": "Pam 22", "img": "/pam/pam (22).mp4", "price": 20000 }
 ]
