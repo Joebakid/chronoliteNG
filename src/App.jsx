@@ -14,6 +14,7 @@ import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
 import PriceGenerator from './components/PriceGenerator'
 import Jewelries from './components/jewelries'
+import Pam from './components/pam'
 // import { Analytics } from "@vercel/analytics/react"
 
 function Btn({ text, btnClassName, href }) {
@@ -45,6 +46,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
             <Route path='/price-generator' element={<PriceGenerator/>}/>
             <Route path='/La-Yedi-store' element={<Jewelries/>}/>
+            <Route path='/pam' element={<Pam/>}/>
           </Routes>
         </main>
 
