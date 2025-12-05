@@ -32,6 +32,7 @@ function Footer() {
           >
             TikTok: @chronoliteng
           </a>
+            <span className="hidden sm:inline">|</span> 
           <a
             href="https://wa.me/2349037291405"
             target="_blank"
