@@ -4,14 +4,25 @@
     "img": "https://img.kwcdn.com/product/fancy/8f038be5-7f62-437b-a8f5-ebaeb414776e.jpg?imageView2/2/w/800/q/70/format/webp",
     "price": "35000"
   },
-  {
-    "name": "Audemars piguet",
-    "img": "https://ik.imagekit.io/Cartel/watches/general%20watches/WhatsApp%20Image%202025-10-24%20at%209.09.33%20PM%20(2).jpeg?updatedAt=1762889832371",
-    "price": "40000"
+  
+    {
+    "name": "couple watch",
+    "img": "https://ik.imagekit.io/Cartel/watches/general%20watches/WhatsApp%20Image%202025-12-05%20at%203.35.55%20AM.jpeg",
+    "price": "45000"
+  },
+    {
+    "name": "Who cares [black dial]",
+    "img": "https://ik.imagekit.io/Cartel/watches/general%20watches/WhatsApp%20Image%202025-12-05%20at%205.10.24%20AM.jpeg",
+    "price": "28000"
   },
   {
-    "name": "Who cares",
+    "name": "Who cares [white dial]",
     "img": "https://ik.imagekit.io/Cartel/watches/general%20watches/WhatsApp%20Image%202025-10-24%20at%209.09.32%20PM%20(3).jpeg?updatedAt=1762889832320",
+    "price": "28000"
+  },
+    {
+    "name": "Poedager",
+    "img": "https://ik.imagekit.io/Cartel/watches/general%20watches/WhatsApp%20Image%202025-12-05%20at%205.11.33%20AM.jpeg",
     "price": "28000"
   },
   {
