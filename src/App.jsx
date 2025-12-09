@@ -12,10 +12,12 @@ import ScrollToTop from "./components/ScrollToTop";
 import LandingPage from "./components/LandingPage";
 import PageNotFound from "./components/PageNotFound";
 import { Analytics } from "@vercel/analytics/react";
-import PriceGenerator from './components/PriceGenerator'
-import Jewelries from './components/jewelries'
-import Pam from './components/pam'
-// import { Analytics } from "@vercel/analytics/react"
+import PriceGenerator from "./components/PriceGenerator";
+import Jewelries from "./components/jewelries";
+import Pam from "./components/pam";
+
+import { CartProvider } from "./context/CartContext";
+import CartSidebar from "./components/CartSidebar";
 
 function Btn({ text, btnClassName, href }) {
   return (
@@ -28,31 +30,34 @@ function Btn({ text, btnClassName, href }) {
 function App() {
   return (
     <Router>
-      <Analytics/>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <NavBar />
+      <CartProvider>
+        <Analytics />
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
+          <NavBar />
 
-        {/* Main Content */}
-        <main className="flex-1 flex items-center justify-center">
-          <Routes>
-            <Route index path="/" element={<LandingPage />} />{" "}
-            {/* 👈 Landing page only */}
-            <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
-            <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
-            <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
-            <Route path="/review" element={<Review Btn={Btn} />} />
-            <Route path="/cap" element={<Cap Btn={Btn} />} />
-            <Route path="*" element={<PageNotFound />} />
-            <Route path='/price-generator' element={<PriceGenerator/>}/>
-            <Route path='/La-Yedi-store' element={<Jewelries/>}/>
-            <Route path='/pam' element={<Pam/>}/>
-          </Routes>
-        </main>
+          {/* Main Content */}
+          <main className="flex-1 flex items-center justify-center">
+            <Routes>
+              <Route index path="/" element={<LandingPage />} />
+              <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
+              <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
+              <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
+              <Route path="/review" element={<Review Btn={Btn} />} />
+              <Route path="/cap" element={<Cap Btn={Btn} />} />
+              <Route path="/price-generator" element={<PriceGenerator />} />
+              <Route path="/La-Yedi-store" element={<Jewelries />} />
+              <Route path="/pam" element={<Pam />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </main>
 
-        <Footer />
-        
-      </div>
+          <Footer />
+        </div>
+
+        {/* Global cart sidebar (works for watches + bags + everything) */}
+        <CartSidebar />
+      </CartProvider>
     </Router>
   );
 }

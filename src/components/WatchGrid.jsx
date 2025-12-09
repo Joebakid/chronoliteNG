@@ -2,11 +2,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useCart } from "../context/CartContext";
 
 /**
  * WatchGrid
  * Props:
- *  - items: array of { id?, name, img (url to image or video), price }
+ *  - items: array of { id?, name, img (url to image or video), price, type?, category? }
  */
 const WatchGrid = ({ items = [], Btn = null }) => {
   const whatsappNumber = "2349037291405";
@@ -16,6 +17,10 @@ const WatchGrid = ({ items = [], Btn = null }) => {
     currency: "NGN",
   });
 
+  // 🔗 Global cart from context (universal cart)
+  const { addToCart, cartItemCount, setIsCartOpen } = useCart();
+
+  // ---------- LOCAL STATE (only for single-item order form + UI) ----------
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [formData, setFormData] = useState({
@@ -41,11 +46,20 @@ const WatchGrid = ({ items = [], Btn = null }) => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") setEnlargedMedia(null);
+      if (e.key === "Escape") {
+        setEnlargedMedia(null);
+        setIsFormOpen(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  // ---------- HANDLERS ----------
+  const handleAddToCart = (item) => {
+    // tag as watch so promo logic (watchTotal) in CartContext works
+    addToCart({ ...item, type: "watch" });
+  };
 
   const handleOpenForm = (item) => {
     setSelectedItem(item);
@@ -63,21 +77,35 @@ const WatchGrid = ({ items = [], Btn = null }) => {
       return;
     }
 
-    const message = encodeURIComponent(
-      `Hello, I'm interested in buying "${selectedItem?.name}" priced at ${formatter.format(
-        selectedItem?.price ?? 0
-      )}.\n\nHere are my details:\nName: ${formData.fullName}\nWhatsApp: ${formData.whatsapp}\nEmail: ${formData.email}\nAddress: ${formData.address}`
-    );
+    if (!selectedItem) {
+      alert("No item selected.");
+      return;
+    }
 
-    // Redirect to WhatsApp chat
-    window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
+    const msg = `Hello, I'm interested in buying "${selectedItem.name}" priced at ${formatter.format(
+      selectedItem.price ?? 0
+    )}.\n\nHere are my details:\nName: ${
+      formData.fullName
+    }\nWhatsApp: ${formData.whatsapp}\nEmail: ${
+      formData.email
+    }\nAddress: ${formData.address}`;
+
+    const encoded = encodeURIComponent(msg);
+    window.location.href = `https://wa.me/${whatsappNumber}?text=${encoded}`;
   };
 
+  // ---------- FILTER / PAGINATION ----------
   const filteredItems = items.filter((item) =>
-    (item?.name || "").toLowerCase().includes(searchTerm.toLowerCase())
+    (item?.name || "")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
   );
 
-  const totalPages = Math.max(1, Math.ceil(filteredItems.length / itemsPerPage));
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredItems.length / itemsPerPage)
+  );
+
   useEffect(() => {
     if (currentPage > totalPages) setCurrentPage(totalPages);
   }, [totalPages, currentPage]);
@@ -90,18 +118,28 @@ const WatchGrid = ({ items = [], Btn = null }) => {
   return (
     // wider centered container to match the watches page layout
     <div className="mx-auto max-w-5xl mt-24 px-4">
-      {/* SEARCH BAR */}
-      <div className="mb-6 flex justify-center">
-        <input
-          type="text"
-          placeholder="Search for an item..."
-          className="border p-2 w-full max-w-md rounded text-black outline-none"
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1);
-          }}
-        />
+      {/* TOP BAR: SEARCH + CART BUTTON */}
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex-1 flex justify-center sm:justify-start">
+          <input
+            type="text"
+            placeholder="Search for an item..."
+            className="border p-2 w-full max-w-md rounded text-black outline-none"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsCartOpen(true)}
+          className="relative border px-4 py-2 rounded bg-white text-black shadow-sm self-center sm:self-auto"
+        >
+          Cart ({cartItemCount})
+        </button>
       </div>
 
       {/* WATCH GRID */}
@@ -115,15 +153,27 @@ const WatchGrid = ({ items = [], Btn = null }) => {
               <MediaWithLoader
                 src={item.img || "/pam/VID-20251119-WA0003.mp4"}
                 alt={item.name}
-                onClick={() => setEnlargedMedia(item.img || "/pam/VID-20251119-WA0003.mp4")}
+                onClick={() =>
+                  setEnlargedMedia(
+                    item.img || "/pam/VID-20251119-WA0003.mp4"
+                  )
+                }
               />
               <div className="mt-3">
                 <NameDisplay name={item.name} />
-                <p className="mt-2 font-semibold">{formatter.format(item.price ?? 0)}</p>
+                <p className="mt-2 font-semibold">
+                  {formatter.format(item.price ?? 0)}
+                </p>
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col gap-2">
+              <button
+                className="bg-gray-200 text-black px-4 py-2 rounded w-full text-sm"
+                onClick={() => handleAddToCart(item)}
+              >
+                Add to Cart
+              </button>
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded w-full"
                 onClick={() => handleOpenForm(item)}
@@ -172,11 +222,24 @@ const WatchGrid = ({ items = [], Btn = null }) => {
         </button>
       </div>
 
-      {/* WHATSAPP FORM */}
+      {/* WHATSAPP FORM (SINGLE ITEM ONLY) */}
       {isFormOpen && selectedItem && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md mx-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-600">Enter Your Details</h2>
+            <h2 className="text-lg font-semibold mb-2 text-gray-800">
+              Enter Your Details
+            </h2>
+
+            <p className="mb-3 text-sm text-gray-600">
+              You&apos;re ordering{" "}
+              <span className="font-semibold">{selectedItem.name}</span>{" "}
+              for{" "}
+              <span className="font-semibold">
+                {formatter.format(selectedItem.price ?? 0)}
+              </span>
+              .
+            </p>
+
             <input
               type="text"
               name="fullName"
@@ -234,7 +297,10 @@ const WatchGrid = ({ items = [], Btn = null }) => {
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
           onClick={() => setEnlargedMedia(null)}
         >
-          <div className="max-w-[95%] max-h-[95%]" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="max-w-[95%] max-h-[95%]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <EnlargedMedia src={enlargedMedia} />
           </div>
         </div>
@@ -287,20 +353,20 @@ const isVideoUrl = (src = "") => /\.(mp4|mov|webm|ogg|mkv)$/i.test(src);
  * - uses IntersectionObserver to set shouldLoad when the card is visible
  * - only sets the video `src` when shouldLoad === true (prevents network load)
  * - images use loading="lazy" to avoid immediate downloads
- *
- * DEV poster fallback path is your uploaded watches screenshot; tooling will transform it.
  */
 const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [failed, setFailed] = useState(false);
   const [candidateIndex, setCandidateIndex] = useState(0);
-  const [shouldLoad, setShouldLoad] = useState(false); // only true when in viewport or clicked
+  const [shouldLoad, setShouldLoad] = useState(false);
   const containerRef = useRef(null);
 
-  // fallback poster image (local path from session). Your tooling will convert to a URL.
   const DEV_POSTER = "/mnt/data/0d99153e-df37-46a8-b897-9adcc8d61536.png";
 
-  const candidates = React.useMemo(() => buildDriveCandidates(src), [src]);
+  const candidates = React.useMemo(
+    () => buildDriveCandidates(src),
+    [src]
+  );
   const currentSrc = candidates[candidateIndex] || src;
   const isVideo = isVideoUrl(currentSrc);
 
@@ -311,10 +377,8 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
     setShouldLoad(false);
   }, [src]);
 
-  // IntersectionObserver -> set shouldLoad when the media enters viewport
   useEffect(() => {
     if (!containerRef.current) return;
-    // if already shouldLoad, do nothing
     if (shouldLoad) return;
 
     const io = new IntersectionObserver(
@@ -326,7 +390,7 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
           }
         });
       },
-      { rootMargin: "200px" } // preload a little before it's strictly visible
+      { rootMargin: "200px" }
     );
 
     io.observe(containerRef.current);
@@ -348,18 +412,13 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
       setFailed(true);
       setIsLoading(false);
     }
-    // eslint-disable-next-line no-console
     console.error("Media error for src:", currentSrc, ev);
   };
 
-  // If it's a /pam/ path we still lazy load, but we can use a poster thumbnail
   const posterFor = (s) => {
-    // if the item provides an explicit poster (like item.poster), you could use it
-    // otherwise use DEV_POSTER as lightweight fallback
     return DEV_POSTER;
   };
 
-  // If no src provided, show debug poster
   if (!src) {
     return (
       <div
@@ -370,12 +429,15 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
           if (onClick) onClick();
         }}
       >
-        <img src={posterFor(src)} alt="debug-poster" className="w-full h-full object-cover rounded-md" />
+        <img
+          src={posterFor(src)}
+          alt="debug-poster"
+          className="w-full h-full object-cover rounded-md"
+        />
       </div>
     );
   }
 
-  // For videos: show poster + play button until shouldLoad true
   if (isVideo) {
     return (
       <div
@@ -397,18 +459,24 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
               }}
               className="absolute z-10 p-3 rounded-full bg-black bg-opacity-50 hover:bg-opacity-60"
             >
-              {/* simple play triangle */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="white"
+              >
                 <path d="M3 22v-20l18 10z" />
               </svg>
             </button>
           </>
         ) : (
           <>
-            {/* only set src when shouldLoad is true to avoid network load */}
             <video
               src={currentSrc}
-              className={`w-full h-full rounded-md object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
+              className={`w-full h-full rounded-md object-cover transition-opacity ${
+                isLoading ? "opacity-0" : "opacity-100"
+              }`}
               autoPlay
               loop
               muted
@@ -434,7 +502,6 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
     );
   }
 
-  // Images: lazy-load immediately with loading="lazy"
   return (
     <div
       ref={containerRef}
@@ -453,9 +520,7 @@ const MediaWithLoader = React.memo(({ src, alt, onClick }) => {
 });
 
 /**
- * EnlargedMedia - modal content (controls available so user can unmute)
- * We still lazy-resolve Drive candidates for the enlarged modal, but that's fine
- * because user intentionally opened the modal.
+ * EnlargedMedia - modal content
  */
 const EnlargedMedia = ({ src }) => {
   const candidates = buildDriveCandidates(src);
@@ -477,7 +542,13 @@ const EnlargedMedia = ({ src }) => {
       />
     );
   }
-  return <img src={primary} alt="Enlarged Media" className="max-w-full max-h-full rounded-lg shadow-lg" />;
+  return (
+    <img
+      src={primary}
+      alt="Enlarged Media"
+      className="max-w-full max-h-full rounded-lg shadow-lg"
+    />
+  );
 };
 
 /**
@@ -485,10 +556,13 @@ const EnlargedMedia = ({ src }) => {
  */
 const NameDisplay = React.memo(({ name = "" }) => {
   const [showFullName, setShowFullName] = useState(false);
-  const short = name.slice(0, 20) + (name.length > 20 ? "..." : "");
+  const short =
+    name.slice(0, 20) + (name.length > 20 ? "..." : "");
   return (
     <div className="text-center mt-2">
-      <h3 className="font-medium">{showFullName ? name : short}</h3>
+      <h3 className="font-medium">
+        {showFullName ? name : short}
+      </h3>
       {name.length > 20 && (
         <button
           onClick={() => setShowFullName((s) => !s)}
