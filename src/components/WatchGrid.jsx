@@ -8,6 +8,9 @@ import { useCart } from "../context/CartContext";
  * WatchGrid
  * Props:
  *  - items: array of { id?, name, img (url to image or video), price, type?, category? }
+ *
+ * Note: this component applies a flat ₦5,000 discount to every item's price
+ * using `applyPriceDiscount` before rendering / adding to cart / sending messages.
  */
 const WatchGrid = ({ items = [], Btn = null }) => {
   const whatsappNumber = "2349037291405";
@@ -19,6 +22,15 @@ const WatchGrid = ({ items = [], Btn = null }) => {
 
   // 🔗 Global cart from context (universal cart)
   const { addToCart, cartItemCount, setIsCartOpen } = useCart();
+
+  // Apply a flat ₦5,000 discount to every item (safe: never below 0)
+  const applyPriceDiscount = (items = []) =>
+    items.map((item) => ({
+      ...item,
+      price: Math.max(0, (item.price || 0) - 5000),
+    }));
+
+  const discountedItems = applyPriceDiscount(items);
 
   // ---------- LOCAL STATE (only for single-item order form + UI) ----------
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -58,6 +70,7 @@ const WatchGrid = ({ items = [], Btn = null }) => {
   // ---------- HANDLERS ----------
   const handleAddToCart = (item) => {
     // tag as watch so promo logic (watchTotal) in CartContext works
+    // ensure we add the discounted item
     addToCart({ ...item, type: "watch" });
   };
 
@@ -95,7 +108,7 @@ const WatchGrid = ({ items = [], Btn = null }) => {
   };
 
   // ---------- FILTER / PAGINATION ----------
-  const filteredItems = items.filter((item) =>
+  const filteredItems = discountedItems.filter((item) =>
     (item?.name || "")
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
