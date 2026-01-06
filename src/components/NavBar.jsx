@@ -12,7 +12,7 @@ function NavBar() {
 
   const links = [
     { text: "Watches", href: "/watches" },
-    { text: "Female Bags", href: "/femalebags" },
+    // { text: "Female Bags", href: "/femalebags" },
     { text: "Plain Tee", href: "/plaintee" },
     { text: "Cap", href: "/cap" },
      {text:'La-Yedi store',href:'/La-Yedi-store'},
