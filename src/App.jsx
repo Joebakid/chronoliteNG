@@ -3,7 +3,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import WatchGrid from "./components/watches";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FemaleBags from "./components/FemaleBags";
+// import FemaleBags from "./components/FemaleBags";
 import Review from "./components/Review";
 import Footer from "./components/Footer";
 import PlainTee from "./components/PlainTee";
@@ -42,7 +42,7 @@ function App() {
               <Route index path="/" element={<LandingPage />} />
               <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
               <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
-              <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} />
+              {/* <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} /> */}
               <Route path="/review" element={<Review Btn={Btn} />} />
               <Route path="/cap" element={<Cap Btn={Btn} />} />
               <Route path="/price-generator" element={<PriceGenerator />} />

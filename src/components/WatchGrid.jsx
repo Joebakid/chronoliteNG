@@ -230,17 +230,27 @@ Address: ${formData.address}`;
       {/* MEDIA MODAL */}
       {enlargedMedia && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
           onClick={() => setEnlargedMedia(null)}
         >
-          <EnlargedMedia src={enlargedMedia} />
+          {/* Modal Box */}
+          <div
+            className="bg-black rounded-xl p-3 max-w-2xl w-[90%]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <EnlargedMedia src={enlargedMedia} />
+          </div>
         </div>
       )}
-    </div>
-  );
-};
+    </div>   
+  );         
+};           
 
 export default WatchGrid;
+
+
+
+ 
 
 /* ---------------- HELPERS ---------------- */
 
@@ -271,15 +281,17 @@ const EnlargedMedia = ({ src }) =>
   isVideoUrl(src) ? (
     <video
       src={src}
-      className="max-w-full max-h-full rounded"
+      className="w-full max-h-[70vh] rounded"
       autoPlay
+      playsInline
       loop
       muted
       controls
     />
   ) : (
-    <img src={src} className="max-w-full max-h-full rounded" />
+    <img src={src} className="w-full max-h-[70vh] object-contain rounded" />
   );
+
 
 const NameDisplay = ({ name = "" }) => {
   const [show, setShow] = React.useState(false);
