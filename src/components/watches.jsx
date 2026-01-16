@@ -11,7 +11,7 @@ function Watches({ Btn }) {
     <WatchGrid
       items={watches}
       discountType="watch"
-      discountAmount={4000}  
+      discountAmount={3000}  
     />
   );
 }

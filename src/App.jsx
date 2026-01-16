@@ -43,7 +43,7 @@ function App() {
               <Route path="/watches" element={<WatchGrid Btn={Btn} />} />
               <Route path="/plaintee" element={<PlainTee Btn={Btn} />} />
               {/* <Route path="/femalebags" element={<FemaleBags Btn={Btn} />} /> */}
-              <Route path="/review" element={<Review Btn={Btn} />} />
+              {/* <Route path="/review" element={<Review Btn={Btn} />} /> */}
               <Route path="/cap" element={<Cap Btn={Btn} />} />
               <Route path="/price-generator" element={<PriceGenerator />} />
               <Route path="/La-Yedi-store" element={<Jewelries />} />
