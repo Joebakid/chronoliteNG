@@ -46,7 +46,7 @@ function App() {
               {/* <Route path="/review" element={<Review Btn={Btn} />} /> */}
               <Route path="/cap" element={<Cap Btn={Btn} />} />
               <Route path="/price-generator" element={<PriceGenerator />} />
-              <Route path="/La-Yedi-store" element={<Jewelries />} />
+              {/* <Route path="/La-Yedi-store" element={<Jewelries />} /> */}
               <Route path="/pam" element={<Pam />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
